@@ -32,6 +32,19 @@
           <input id="login-id" name="studentId" type="text" autocomplete="username" placeholder="e.g. B25CS030" data-rule="required">
           <small class="error"></small>
         </div>
+
+        <div class="field">
+          <label for="login-password">Password</label>
+          <div class="pw-wrap">
+            <input id="login-password" name="password" type="password" autocomplete="current-password" placeholder="Enter your password" data-rule="required">
+            <button type="button" class="toggle-pw" data-target="login-password">Show</button>
+          </div>
+          <small class="error"></small>
+        </div>
+
+        <button type="submit" class="btn">Log in</button>
+        <p class="switch-text">New here? <a href="#signup" data-mode="signup">Create an account</a></p>
+
       </form>
     </section>
   </main>
