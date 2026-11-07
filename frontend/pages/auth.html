@@ -26,6 +26,13 @@
         <h1 id="form-title">Log in</h1>
         <p id="form-sub">Use your Student ID and password to continue.</p>
       </div>
+      <form id="login-form" novalidate>
+        <div class="field">
+          <label for="login-id">Student ID</label>
+          <input id="login-id" name="studentId" type="text" autocomplete="username" placeholder="e.g. B25CS030" data-rule="required">
+          <small class="error"></small>
+        </div>
+      </form>
     </section>
   </main>
 
