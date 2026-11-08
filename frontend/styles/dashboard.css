@@ -1,0 +1,192 @@
+.aboutBox{
+    display: flex;
+    padding-top: 64px;
+    padding-right: 80px;
+    padding-bottom: 72px;
+    padding-left: 80px;
+    gap: 72px;
+    opacity: 1;
+
+}
+.aboutData{
+    display: flex;
+    flex-direction: column;
+    height: 384px;
+    max-width: 586px;
+    gap:40px;
+
+}
+.aboutTop{
+    font-family: Inter;
+    font-weight: 700;
+    font-style: Bold;
+    font-size: 11px;
+    line-height: 100%;
+    letter-spacing: 2px;
+    color: #173F8A;
+}
+.aboutHead{
+    font-family: Inter;
+    font-weight: 400;
+    font-style: Regular;
+    font-size: 60px;
+    line-height: 100%;
+    letter-spacing: -2.4px;
+}
+.aboutDesc{
+    font-family: Inter;
+    font-weight: 400;
+    font-style: Regular;
+    font-size: 26px;
+    line-height: 130%;
+    letter-spacing: -0.6px;
+}
+.aboutDetails{
+    font-family: Inter;
+    font-weight: 400;
+    font-style: Regular;
+    font-size: 16px;
+    line-height: 160%;
+    letter-spacing: 0%;
+    color: #68768B;
+}
+
+.currentIssuesRedirect{
+    width: 219px;
+    height: 48px;
+    padding-right: 20px;
+    padding-left: 20px;
+    gap: 10px;
+    opacity: 1;
+    border-radius: 8px;
+    background: #173F8A;
+    color: #FFFFFF;
+    border: none;
+    margin-right: 20px;
+    cursor: pointer;
+}
+.raiseIssueRedirect{
+    width: 56px;
+    height: 56px;
+    opacity: 1;
+    border-radius: 100px;
+    border: none;
+    background: #173F8A;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+.raiseIssueText{
+    color:#173F8A;
+}
+.iitBhilaiImgBox{
+    border-radius: 30px;
+    overflow: hidden;
+}
+.iitBhilaiImg{
+    transition: transform 0.3s ease;
+}
+.iitBhilaiImgBox:hover .iitBhilaiImg{
+    transform: scale(1.1);
+}
+.hostelsBox{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #F9FBFE;
+    width: 1440px;
+    padding-top: 40px;
+    padding-right: 80px;
+    padding-bottom: 64px;
+    padding-left: 80px;
+    gap: 56px;
+
+
+}
+.headingHostels{
+    display:flex;
+    justify-content: space-between;
+    width: 100%;
+}
+.headingHostelsLeft{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.lightText{
+    margin-top: auto;
+    color: #68768B;
+}
+.hostel{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 1280px;
+
+}
+.hostelImgBox{
+    width: 544px;
+    height: 280px;
+    opacity: 1;
+    border-radius: 16px;
+    overflow: hidden;
+}
+.hostelImg{
+    border-radius: 16px;
+    transition: transform 0.3s ease;
+}
+.hostelImgBox:hover .hostelImg{
+    transform: scale(1.1);
+}
+.hostelContent{
+    display: flex;
+    flex-direction: column;
+    width: 672px;
+    padding-right: 24px;
+    padding-left: 24px;
+    gap: 16px;
+    opacity: 1;
+}
+.commonHeading{
+    font-family: Inter;
+    font-weight: 400;
+    font-style: Regular;
+    font-size: 11px;
+    line-height: 100%;
+    letter-spacing: 1.8px;
+    color: #173F8A;
+}
+.hostelName{
+    font-family: Inter;
+    font-weight: 400;
+    font-style: Regular;
+    font-size: 32px;
+    line-height: 100%;
+    letter-spacing: -0.8px;
+
+}
+.hostelHead{
+    font-family: Inter;
+    font-weight: 500;
+    font-style: Medium;
+    font-size: 18px;
+    line-height: 100%;
+    letter-spacing: 0%;
+}
+.hostelDesc{
+    font-family: Inter;
+    font-weight: 400;
+    font-style: Regular;
+    font-size: 15px;
+    line-height: 160%;
+    letter-spacing: 0%;
+    color: #68768B;
+}
+.hostelFeat{
+    font-family: Inter;
+    font-weight: 500;
+    font-style: Medium;
+    font-size: 12px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #173F8A;
+}
