@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raise Issue</title>
+    <!-- Links -->
+    <link rel="stylesheet" href="../styles/raiseissue.css">
+    <link rel="stylesheet" href="../styles/common.css">
+    <script src="../scripts/raiseissue.js" defer></script>
+</head>
+<body>
+    <nav class="nav">
+        <div class="iconName">
+            <img src="../cnt/icon.png" width="40px" height="40px">
+            <div class="appNameBox">
+                <p class="appName">
+                    <a href="dashboard.html">
+                         Warden
+                    </a>
+                </p>
+                <p class="appDesc">
+                    Hostel Management
+                </p>
+            </div> 
+        </div>
+
+        <div class="navArea">
+            <div class="currIssuesField">
+                <span class="fieldText listIssueText">
+                    <a href="listissue.html">
+                        Current Issues
+                    </a>
+                </span>
+            </div>
+            <div class="announcementsField">
+                <span class="fieldText announcementText">
+                    <a href="announcement.html">
+                         Announcements
+                    </a>
+                </span>
+            </div>
+            <a href="profile.html">
+                <img src="../cnt/profile.png" widht="40px" height="40px">
+            </a> 
+        </div>
+    </nav>
+    <section class="issueCard">
+        <section class="headingIssue">
+            <div class="headingIcon">
+                RI
+            </div>
+            <div class="headingText">
+                <h1>Raise Issue</h1>
+                <p>
+                    Tell us what needs attention.
+                    We'll take it from here.
+                </p>
+            </div>
+        </section>
+        <div class="notice">
+            <span class="infoIcon">i</span>
+            <p>
+                Your contact details help the hostel team follow up.
+                Please don't include passwords or sensitive personal information
+            </p>
+        </div>
+
+
+        <form id="raiseIssueForm">
+            <div class="formGrid">
+                <div class="formGroup">
+                    <label for="studentId">Student ID *</label>
+                    <input
+                        type="text"
+                        id="studentId"
+                        name="student_id"
+                        placeholder="Enter Student ID"
+                        required
+                    >
+                </div>
+
+                <div class="formGroup">
+                    <label for="studentName">Name *</label>
+                    <input
+                        type="text"
+                        id="studentName"
+                        name="student_name"
+                        placeholder="Enter Name"
+                        required
+                    >
+                </div>
+
+                <div class="formGroup">
+                    <label for="roomNumber">Room No. *</label>
+                    <input
+                        type="text"
+                        id="roomNumber"
+                        name="room_number"
+                        placeholder="G-314"
+                        required
+                    >
+                </div>
+
+                <div class="formGroup">
+                    <label for="hostel">Hostel *</label>
+                    <select id="hostel" name="hostel" required>
+                        <option value="">Select Hostel</option>
+                        <option value="Kanhar">Kanhar</option>
+                        <option value="Gopad">Gopad</option>
+                        <option value="Indiravati">Indiravati</option>
+                        <option value="MSH">MSH</option>
+                    </select>
+
+                </div>
+
+                <div class="formGroup fullWidth">
+                    <label for="phone">Phone No. *</label>
+                    <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        placeholder="+91 XXXXX XXXXX"
+                        required
+                    >
+                </div>
+
+                <div class="formGroup fullWidth">
+                    <label for="description">Issue *</label>
+                    <textarea
+                        id="description"
+                        name="description"
+                        rows="5"
+                        placeholder="Describe the issue, where it is located and when you first noticed it..."
+                        required
+                    ></textarea>
+                    <small>
+                        A few specific details will help us direct your issue to the right team.
+                    </small>
+                </div>
+            </div>
+            <button type="submit" class="submitButton">
+                Submit
+            </button>
+        </form>
+    </section>
+</body>
+</html>
