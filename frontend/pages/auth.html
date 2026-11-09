@@ -81,7 +81,47 @@
             <small class="error"></small>
           </div>
 
+          <div class="field">
+            <label for="su-hostel">Hostel</label>
+            <select id="su-hostel" name="hostel" data-rule="hostel">
+              <option value="">Select hostel</option>
+              <option>Kanhar</option>
+              <option>Gopad</option>
+              <option>Indravati</option>
+              <option>Shivnath</option>
+            </select>
+            <small class="error"></small>
+          </div>
+
+          <div class="field">
+            <label for="su-room">Room no.</label>
+            <input id="su-room" name="room" type="text" placeholder="e.g. A-214" data-rule="room">
+            <small class="error"></small>
+          </div>
+
+          <div class="field">
+            <label for="su-password">Password</label>
+            <div class="pw-wrap">
+              <input id="su-password" name="password" type="password" autocomplete="new-password" placeholder="Create a password" data-rule="password">
+              <button type="button" class="toggle-pw" data-target="su-password">Show</button>
+            </div>
+            <small class="error"></small>
+          </div>
+
+          <div class="field">
+            <label for="su-confirm">Confirm password</label>
+            <div class="pw-wrap">
+              <input id="su-confirm" name="confirm" type="password" autocomplete="new-password" placeholder="Re-enter password" data-rule="confirm">
+              <button type="button" class="toggle-pw" data-target="su-confirm">Show</button>
+            </div>
+            <small class="error"></small>
+          </div>
+
         </div>
+
+        <button type="submit" class="btn">Create account</button>
+        <p class="switch-text">Already have an account? <a href="#login" data-mode="login">Log in</a></p>
+
       </form>
     </section>
   </main>
