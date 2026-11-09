@@ -156,3 +156,19 @@ input:focus, select:focus { outline: none; border-color: var(--navy); box-shadow
 }
 .notice.error   { background: var(--red-bg);   color: var(--red);   border-color: #fecaca; }
 .notice.success { background: var(--green-bg); color: var(--green); border-color: #bbf7d0; }
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 16px;
+}
+.span-2 { grid-column: span 2; }
+
+/* ---------- Phones ---------- */
+@media (max-width: 560px) {
+  .topbar { padding: 0 16px; }
+  .page { padding: 24px 12px; }
+  .card { padding: 24px 18px; }
+  .grid { grid-template-columns: 1fr; }
+  .span-2 { grid-column: auto; }
+}
