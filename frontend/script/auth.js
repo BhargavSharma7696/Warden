@@ -130,3 +130,22 @@ signupForm.addEventListener('submit', event => {
   showNotice('Account created. Log in to continue.', 'success');
   loginForm.elements.password.focus();
 });
+
+loginForm.addEventListener('submit', event => {
+  event.preventDefault();
+  hideNotice();
+  if (!validateForm(loginForm)) return;
+
+  const id = loginForm.elements.studentId.value.trim().toLowerCase();
+  const password = loginForm.elements.password.value;
+
+  const user = getUsers().find(u => u.studentId.toLowerCase() === id);
+
+  if (!user || user.password !== password) {
+    showNotice('Student ID or password is incorrect.', 'error');
+    return;
+  }
+
+  localStorage.setItem('warden_session', JSON.stringify({ studentId: user.studentId, name: user.name }));
+  window.location.href = 'dashboard.html';
+});
