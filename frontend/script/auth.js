@@ -98,3 +98,35 @@ function getUsers() {
 function saveUsers(users) {
   localStorage.setItem('warden_users', JSON.stringify(users));
 }
+
+signupForm.addEventListener('submit', event => {
+  event.preventDefault();
+  hideNotice();
+  if (!validateForm(signupForm)) return;
+
+  const f = signupForm.elements;
+  const users = getUsers();
+  const studentId = f.studentId.value.trim().toUpperCase();
+
+  if (users.some(u => u.studentId.toLowerCase() === studentId.toLowerCase())) {
+    showNotice('An account with this Student ID already exists. Try logging in.', 'error');
+    return;
+  }
+
+  users.push({
+    name: f.name.value.trim(),
+    studentId: studentId,
+    email: f.email.value.trim(),
+    phone: f.phone.value.trim(),
+    hostel: f.hostel.value,
+    room: f.room.value.trim(),
+    password: f.password.value
+  });
+  saveUsers(users);
+
+  signupForm.reset();
+  showMode('login');
+  loginForm.elements.studentId.value = studentId;
+  showNotice('Account created. Log in to continue.', 'success');
+  loginForm.elements.password.focus();
+});
