@@ -50,3 +50,31 @@ document.querySelectorAll('.toggle-pw').forEach(button => {
     button.textContent = isHidden ? 'Hide' : 'Show';
   });
 });
+
+const rules = {
+  required:  v => v.trim() !== '' || 'This field is required.',
+  name:      v => v.trim().length >= 2 || 'Enter your full name.',
+  studentId: v => /^[BM]\d{2}[A-Z]{2,3}\d{3}$/i.test(v.trim()) || 'Enter a valid Student ID, like B25CS030.',
+  email:     v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()) || 'Enter a valid email address.',
+  phone:     v => /^\d{10}$/.test(v.trim()) || 'Enter a 10-digit mobile number.',
+  hostel:    v => v !== '' || 'Choose your hostel.',
+  room:      v => v.trim() !== '' || 'Enter your room number.',
+  password:  v => (v.length >= 8 && /[A-Za-z]/.test(v) && /\d/.test(v)) || 'Use at least 8 characters with a letter and a number.',
+  confirm:   (v, form) => v === form.elements.password.value || 'Passwords do not match.'
+};
+
+function validateForm(form) {
+  let allGood = true;
+
+  form.querySelectorAll('[data-rule]').forEach(input => {
+    const result = rules[input.dataset.rule](input.value, form);
+    const field = input.closest('.field');
+
+    field.classList.toggle('invalid', result !== true);
+    field.querySelector('.error').textContent = result === true ? '' : result;
+
+    if (result !== true) allGood = false;
+  });
+
+  return allGood;
+}
