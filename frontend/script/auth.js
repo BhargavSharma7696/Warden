@@ -41,3 +41,12 @@ document.querySelectorAll('[data-mode]').forEach(el => {
 });
 
 if (window.location.hash === '#signup') showMode('signup');
+
+document.querySelectorAll('.toggle-pw').forEach(button => {
+  button.addEventListener('click', () => {
+    const input = document.getElementById(button.dataset.target);
+    const isHidden = input.type === 'password';
+    input.type = isHidden ? 'text' : 'password';
+    button.textContent = isHidden ? 'Hide' : 'Show';
+  });
+});
