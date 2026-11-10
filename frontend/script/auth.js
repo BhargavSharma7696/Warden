@@ -33,3 +33,11 @@ function showMode(mode) {
   });
   hideNotice();
 }
+document.querySelectorAll('[data-mode]').forEach(el => {
+  el.addEventListener('click', event => {
+    event.preventDefault();
+    showMode(el.dataset.mode);
+  });
+});
+
+if (window.location.hash === '#signup') showMode('signup');
