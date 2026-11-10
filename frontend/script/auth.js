@@ -78,3 +78,23 @@ function validateForm(form) {
 
   return allGood;
 }
+
+document.querySelectorAll('[data-rule]').forEach(input => {
+  input.addEventListener('input', () => {
+    const field = input.closest('.field');
+    field.classList.remove('invalid');
+    field.querySelector('.error').textContent = '';
+  });
+});
+
+function getUsers() {
+  try {
+    return JSON.parse(localStorage.getItem('warden_users')) || [];
+  } catch (e) {
+    return [];
+  }
+}
+
+function saveUsers(users) {
+  localStorage.setItem('warden_users', JSON.stringify(users));
+}
