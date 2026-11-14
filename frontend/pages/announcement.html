@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Announcements</title>
+
+    <!-- Links -->
+    <link rel="stylesheet" href="../styles/common.css">
+    <link rel="stylesheet" href="../styles/announcement.css">
+    <script src="../script/announcement.js" defer></script>
+</head>
+<body>
+    <nav class="nav">
+        <div class="iconName">
+            <img src="../cnt/icon.png" width="40px" height="40px">
+            <div class="appNameBox">
+                <p class="appName">
+                    <a href="dashboard.html">
+                         Warden
+                    </a>
+                </p>
+                <p class="appDesc">
+                    Hostel Management
+                </p>
+            </div> 
+        </div>
+
+        <div class="navArea">
+            <div class="currIssuesField">
+                <span class="fieldText listIssueText">
+                    <a href="listissue.html">
+                        Current Issues
+                    </a>
+                </span>
+            </div>
+            <div class="announcementsField">
+                <span class="fieldText announcementText">
+                    <a href="announcement.html">
+                         Announcements
+                    </a>
+                </span>
+            </div>
+            <a href="profile.html">
+                <img src="../cnt/profile.png" widht="40px" height="40px">
+            </a> 
+        </div>
+    </nav>
+
+    <main class="announcementPage">
+        <section class="pageHeading">
+            <p class="smallHeading">STAY IN THE KNOW</p>
+            <h1>Announcements</h1>
+            <p class="pageDescription">
+                Updates, reminders and community notices for everyday hostel life.
+            </p>
+        </section>
+
+        <section class="announcementLayout">
+            <div class="noticeListArea">
+                <div class="listHeading">
+                    <h2>Latest notices</h2>
+                    <span id="announcementCount">Loading announcements...</span>
+                </div>
+
+                <div id="announcementList" class="announcementList">
+                    <!-- JavaScript will add announcement cards here -->
+                </div>
+            </div>
+
+            <section class="announcementDetails" id="announcementDetails">
+                <div class="detailTop">
+                    <span class="detailNumber" id="detailNumber">ANNOUNCEMENT</span>
+                    <span class="detailLabel">Notice detail</span>
+                </div>
+
+                <div class="detailContent">
+                    <span class="categoryTag" id="detailCategory">Notice</span>
+                    <h2 id="detailTitle">Select an announcement</h2>
+
+                    <div class="detailMeta">
+                        <span id="detailDate">Choose a notice from the list</span>
+                        <span id="detailTeam"></span>
+                    </div>
+
+                    <div id="detailBody" class="detailBody">
+                        <p>The full announcement will appear here.</p>
+                    </div>
+
+                    <div class="detailFooter">
+                        Illustrative announcement for this concept portal. This is not an official
+                        institute notice or maintenance schedule.
+                    </div>
+                </div>
+            </section>
+        </section>
+    </main>
+
+    <footer class="pageFooter">
+        <span>Warden · Hostel Management</span>
+        <span>Concept portal · Illustrative content, not an official institute service</span>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,346 @@
+
+/* Main page */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background-color: #eff4fb;
+    color: #1e293b;
+    font-family: "Inter", sans-serif;
+}
+
+/* Navigation bar - uses the same class names as the other Warden pages */
+
+
+/* Page heading */
+.announcementPage {
+    width: 88%;
+    max-width: 1250px;
+    min-height: calc(100vh - 130px);
+    margin: 0 auto;
+    padding: 36px 0 34px;
+}
+
+.pageHeading {
+    margin-bottom: 25px;
+}
+
+.smallHeading {
+    margin: 0 0 8px;
+    color: #1746a2;
+    font-size: 9px;
+    font-weight: bold;
+    letter-spacing: 1.3px;
+}
+
+.pageHeading h1 {
+    margin: 0;
+    color: #1d2d49;
+    font-size: 28px;
+    font-weight: 500;
+}
+
+.pageDescription {
+    margin: 8px 0 0;
+    color: #7a879d;
+    font-size: 12px;
+}
+
+
+/* Two-column layout */
+.announcementLayout {
+    display: grid;
+    grid-template-columns: 34% 1fr;
+    gap: 24px;
+    align-items: start;
+}
+
+.listHeading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.listHeading h2 {
+    margin: 0;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.listHeading span {
+    color: #7b879b;
+    font-size: 10px;
+}
+
+.announcementList {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+/* Announcement cards created by JavaScript */
+.announcementCard {
+    width: 100%;
+    padding: 15px 16px;
+    border: 1px solid #e5eaf3;
+    border-radius: 11px;
+    background-color: #ffffff;
+    text-align: left;
+    cursor: pointer;
+    box-shadow: 0 4px 13px rgba(30, 55, 95, 0.04);
+}
+
+.announcementCard:hover {
+    border-color: #b9ccef;
+    transform: translateY(-1px);
+}
+
+.announcementCard.selected {
+    background-color: #edf3ff;
+    border-color: #c6d8ff;
+}
+
+.cardTop,
+.cardBottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.cardCategory {
+    color: #1746a2;
+    font-size: 8px;
+    font-weight: bold;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+}
+
+.cardDate {
+    color: #8793a8;
+    font-size: 8px;
+}
+
+.announcementCard h3 {
+    margin: 10px 0 8px;
+    color: #1d2d49;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.cardSummary {
+    margin: 0 0 11px;
+    color: #74829a;
+    font-size: 10px;
+    line-height: 1.6;
+}
+
+.cardBottom {
+    color: #8491a6;
+    font-size: 8px;
+}
+
+.cardAction {
+    color: #1746a2;
+    font-weight: bold;
+}
+
+
+/* Full announcement detail panel */
+.announcementDetails {
+    min-height: 434px;
+    overflow: hidden;
+    border: 1px solid #e5eaf3;
+    border-radius: 11px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 15px rgba(30, 55, 95, 0.04);
+}
+
+.detailTop {
+    height: 43px;
+    padding: 0 18px;
+    border-bottom: 1px solid #edf0f5;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.detailNumber {
+    color: #1746a2;
+    font-size: 9px;
+    font-weight: bold;
+}
+
+.detailLabel {
+    color: #8491a6;
+    font-size: 9px;
+}
+
+.detailContent {
+    padding: 22px 20px;
+}
+
+.categoryTag {
+    display: inline-block;
+    padding: 5px 9px;
+    border-radius: 20px;
+    background-color: #edf3ff;
+    color: #1746a2;
+    font-size: 8px;
+    font-weight: bold;
+}
+
+.detailContent h2 {
+    margin: 14px 0 12px;
+    color: #1d2d49;
+    font-size: 21px;
+    font-weight: 500;
+}
+
+.detailMeta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 18px;
+    color: #7a879d;
+    font-size: 9px;
+}
+
+.detailBody {
+    color: #263754;
+    font-size: 11px;
+    line-height: 1.75;
+}
+
+.detailBody p {
+    margin: 0 0 13px;
+}
+
+.infoTable {
+    margin: 15px 0;
+    padding: 12px;
+    border-radius: 8px;
+    background-color: #f7f9fd;
+}
+
+.infoRow {
+    display: grid;
+    grid-template-columns: 85px 1fr;
+    gap: 12px;
+    padding: 4px 0;
+    font-size: 9px;
+}
+
+.infoRow span {
+    color: #8491a6;
+}
+
+.infoRow strong {
+    color: #263754;
+    font-weight: bold;
+}
+
+.detailFooter {
+    margin-top: 18px;
+    padding-top: 13px;
+    border-top: 1px solid #edf0f5;
+    color: #929db0;
+    font-size: 8px;
+    line-height: 1.5;
+}
+
+.noAnnouncements {
+    padding: 20px;
+    border: 1px dashed #d6deeb;
+    border-radius: 9px;
+    color: #7a879d;
+    background-color: #ffffff;
+    font-size: 11px;
+}
+
+
+/* Bottom footer */
+.pageFooter {
+    min-height: 43px;
+    padding: 0 6%;
+    border-top: 1px solid #e5eaf3;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #8290a7;
+    font-size: 8px;
+}
+
+
+/* Hide scrollbar but keep scrolling */
+body {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+
+/* Smaller screens */
+@media screen and (max-width: 750px) {
+    .nav {
+        padding: 0 4%;
+    }
+
+    .navArea {
+        gap: 7px;
+    }
+
+    .currIssuesField,
+    .announcementsField {
+        padding: 8px;
+    }
+
+    .announcementPage {
+        width: 92%;
+        padding-top: 25px;
+    }
+
+    .announcementLayout {
+        grid-template-columns: 1fr;
+    }
+
+    .announcementDetails {
+        min-height: 350px;
+    }
+
+    .pageFooter {
+        padding: 12px 4%;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+}
+
+@media screen and (max-width: 430px) {
+    .appDesc {
+        display: none;
+    }
+
+    .navArea {
+        gap: 4px;
+    }
+
+    .currIssuesField,
+    .announcementsField {
+        font-size: 9px;
+    }
+
+    .pageHeading h1 {
+        font-size: 24px;
+    }
+
+    .detailContent h2 {
+        font-size: 18px;
+    }
+}
