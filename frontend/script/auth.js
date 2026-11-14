@@ -1,4 +1,8 @@
+// ---------- Backend settings ----------
+const API = 'http://localhost:8000';
+const AFTER_LOGIN_PAGE = 'dashboard.html';   // change this if the team wants another page
 
+// ---------- Grab the elements we need ----------
 const loginForm  = document.getElementById('login-form');
 const signupForm = document.getElementById('signup-form');
 const notice     = document.getElementById('notice');
@@ -7,13 +11,13 @@ const subtitle   = document.getElementById('form-sub');
 const tabs       = document.querySelectorAll('.tab');
 
 const text = {
-  login:  { title: 'Log in',              sub: 'Use your Student ID and password to continue.' },
-  signup: { title: 'Create your account', sub: 'Add your hostel details so your issues reach the right place.' }
+  login:  { title: 'Log in',              sub: 'Use your email and password to continue.' },
+  signup: { title: 'Create your account', sub: 'Enter your email and choose a password.' }
 };
 
 function showNotice(message, type) {
   notice.textContent = message;
-  notice.className = 'notice ' + type;   
+  notice.className = 'notice ' + type;
   notice.hidden = false;
 }
 function hideNotice() {
@@ -33,6 +37,7 @@ function showMode(mode) {
   });
   hideNotice();
 }
+
 document.querySelectorAll('[data-mode]').forEach(el => {
   el.addEventListener('click', event => {
     event.preventDefault();
@@ -51,16 +56,12 @@ document.querySelectorAll('.toggle-pw').forEach(button => {
   });
 });
 
+// ---------- Checking input ----------
 const rules = {
-  required:  v => v.trim() !== '' || 'This field is required.',
-  name:      v => v.trim().length >= 2 || 'Enter your full name.',
-  studentId: v => /^[BM]\d{2}[A-Z]{2,3}\d{3}$/i.test(v.trim()) || 'Enter a valid Student ID, like B25CS030.',
-  email:     v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()) || 'Enter a valid email address.',
-  phone:     v => /^\d{10}$/.test(v.trim()) || 'Enter a 10-digit mobile number.',
-  hostel:    v => v !== '' || 'Choose your hostel.',
-  room:      v => v.trim() !== '' || 'Enter your room number.',
-  password:  v => (v.length >= 8 && /[A-Za-z]/.test(v) && /\d/.test(v)) || 'Use at least 8 characters with a letter and a number.',
-  confirm:   (v, form) => v === form.elements.password.value || 'Passwords do not match.'
+  required: v => v.trim() !== '' || 'This field is required.',
+  email:    v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()) || 'Enter a valid email address.',
+  password: v => (v.length >= 8 && /[A-Za-z]/.test(v) && /\d/.test(v)) || 'Use at least 8 characters with a letter and a number.',
+  confirm:  (v, form) => v === form.elements.password.value || 'Passwords do not match.'
 };
 
 function validateForm(form) {
@@ -87,65 +88,92 @@ document.querySelectorAll('[data-rule]').forEach(input => {
   });
 });
 
-function getUsers() {
-  try {
-    return JSON.parse(localStorage.getItem('warden_users')) || [];
-  } catch (e) {
-    return [];
-  }
+// ---------- Talking to the backend ----------
+// Sends JSON to the server and returns { ok, data }.
+async function postJSON(path, body) {
+  const response = await fetch(API + path, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body)
+  });
+  let data = {};
+  try { data = await response.json(); } catch (e) { /* the reply had no JSON */ }
+  return { ok: response.ok, data: data };
 }
 
-function saveUsers(users) {
-  localStorage.setItem('warden_users', JSON.stringify(users));
+// The server's error looks like { "detail": "message" }.
+// A 422 error has a list instead of text, so we show a general message for that.
+function errorText(result) {
+  const detail = result.data.detail;
+  return typeof detail === 'string' ? detail : 'Please check your details and try again.';
 }
 
-signupForm.addEventListener('submit', event => {
+function saveTokenAndGo(token) {
+  localStorage.setItem('token', token);
+  window.location.href = AFTER_LOGIN_PAGE;
+}
+
+// Disables the button while waiting, so nobody clicks twice.
+function setBusy(form, busy) {
+  const button = form.querySelector('.btn');
+  button.disabled = busy;
+  button.textContent = busy ? 'Please wait…' : (form === loginForm ? 'Log in' : 'Create account');
+}
+
+// ---------- Sign up ----------
+signupForm.addEventListener('submit', async event => {
   event.preventDefault();
   hideNotice();
   if (!validateForm(signupForm)) return;
 
-  const f = signupForm.elements;
-  const users = getUsers();
-  const studentId = f.studentId.value.trim().toUpperCase();
+  const email = signupForm.elements.email.value.trim();
+  const password = signupForm.elements.password.value;
 
-  if (users.some(u => u.studentId.toLowerCase() === studentId.toLowerCase())) {
-    showNotice('An account with this Student ID already exists. Try logging in.', 'error');
-    return;
+  setBusy(signupForm, true);
+  try {
+    const created = await postJSON('/auth/register', { email: email, password: password });
+    if (!created.ok) {
+      showNotice(errorText(created), 'error');
+      return;
+    }
+
+    // Signing up gives no token, so log in straight away with the same details
+    const session = await postJSON('/auth/login', { email: email, password: password });
+    if (session.ok) {
+      saveTokenAndGo(session.data.access_token);
+    } else {
+      signupForm.reset();
+      showMode('login');
+      loginForm.elements.email.value = email;
+      showNotice('Account created. Log in to continue.', 'success');
+    }
+  } catch (e) {
+    showNotice('Cannot reach the server. Check that the backend is running.', 'error');
+  } finally {
+    setBusy(signupForm, false);
   }
-
-  users.push({
-    name: f.name.value.trim(),
-    studentId: studentId,
-    email: f.email.value.trim(),
-    phone: f.phone.value.trim(),
-    hostel: f.hostel.value,
-    room: f.room.value.trim(),
-    password: f.password.value
-  });
-  saveUsers(users);
-
-  signupForm.reset();
-  showMode('login');
-  loginForm.elements.studentId.value = studentId;
-  showNotice('Account created. Log in to continue.', 'success');
-  loginForm.elements.password.focus();
 });
 
-loginForm.addEventListener('submit', event => {
+// ---------- Log in ----------
+loginForm.addEventListener('submit', async event => {
   event.preventDefault();
   hideNotice();
   if (!validateForm(loginForm)) return;
 
-  const id = loginForm.elements.studentId.value.trim().toLowerCase();
+  const email = loginForm.elements.email.value.trim();
   const password = loginForm.elements.password.value;
 
-  const user = getUsers().find(u => u.studentId.toLowerCase() === id);
-
-  if (!user || user.password !== password) {
-    showNotice('Student ID or password is incorrect.', 'error');
-    return;
+  setBusy(loginForm, true);
+  try {
+    const session = await postJSON('/auth/login', { email: email, password: password });
+    if (!session.ok) {
+      showNotice(errorText(session), 'error');
+      return;
+    }
+    saveTokenAndGo(session.data.access_token);
+  } catch (e) {
+    showNotice('Cannot reach the server. Check that the backend is running.', 'error');
+  } finally {
+    setBusy(loginForm, false);
   }
-
-  localStorage.setItem('warden_session', JSON.stringify({ studentId: user.studentId, name: user.name }));
-  window.location.href = 'dashboard.html';
 });
