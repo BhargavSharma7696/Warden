@@ -1,12 +1,12 @@
-
+/* ---------- Colours ---------- */
 :root {
   --navy: #1d3a8a;
+  --navy-dark: #162d6b;
   --bg: #f5f7fb;
   --line: #e2e8f0;
   --text: #0f172a;
   --muted: #64748b;
   --soft: #eef2f9;
-  --navy-dark: #162d6b;
   --red: #b91c1c;
   --red-bg: #fef2f2;
   --green: #166534;
@@ -27,20 +27,7 @@ body {
   line-height: 1.5;
 }
 
-.topbar {
-  height: 60px;
-  padding: 0 32px;
-  display: flex;
-  align-items: center;
-  background: #fff;
-  border-bottom: 1px solid var(--line);
-}
-.brand { display: flex; align-items: center; gap: 10px; color: inherit; text-decoration: none; }
-.logo { width: 32px; height: 32px; border-radius: 8px; background: var(--navy); display: grid; place-items: center; }
-.logo svg { width: 18px; height: 18px; stroke: #fff; }
-.brand-name { font-weight: 600; font-size: 15px; line-height: 1.2; }
-.brand-sub { font-size: 11px; color: var(--muted); }
-
+/* ---------- Page and card ---------- */
 .page { flex: 1; display: flex; justify-content: center; align-items: flex-start; padding: 48px 16px; }
 
 .card {
@@ -70,60 +57,7 @@ h1 { margin: 0 0 4px; font-size: 22px; font-weight: 600; }
 
 .footer { padding: 20px; text-align: center; font-size: 12px; color: var(--muted); }
 
-.field { margin-bottom: 16px; }
-label { display: block; margin-bottom: 6px; font-size: 13px; font-weight: 500; }
-
-input, select{
-  width: 100%;
-  height: 42px;
-  padding: 0 12px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: #fff;
-  color: var(--text);
-  font: inherit;
-}
-input::placeholder { color: #94a3b8; }
-input:focus, select:focus { outline: none; border-color: var(--navy); box-shadow: 0 0 0 3px rgba(29, 58, 138, 0.15); }
-
-.pw-wrap { position: relative; }
-.pw-wrap input { padding-right: 60px; }
-.toggle-pw {
-  position: absolute;
-  right: 6px;
-  top: 6px;
-  height: 30px;
-  padding: 0 10px;
-  border: 0;
-  border-radius: 6px;
-  background: transparent;
-  color: var(--navy);
-  font: inherit;
-  font-size: 12px;
-  font-weight: 500;
-  cursor: pointer;
-}
-.toggle-pw:hover { background: var(--soft); }
-
-.btn {
-  width: 100%;
-  height: 44px;
-  margin-top: 4px;
-  border: 0;
-  border-radius: 8px;
-  background: var(--navy);
-  color: #fff;
-  font: inherit;
-  font-weight: 500;
-  cursor: pointer;
-}
-.btn:hover { background: var(--navy-dark); }
-.btn:focus-visible, .toggle-pw:focus-visible { outline: 2px solid var(--navy); outline-offset: 2px; }
-
-.switch-text { margin: 16px 0 0; text-align: center; color: var(--muted); }
-.switch-text a { color: var(--navy); font-weight: 500; text-decoration: none; }
-.switch-text a:hover { text-decoration: underline; }
-
+/* ---------- Log in / Sign up tabs ---------- */
 .tabs {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -145,6 +79,7 @@ input:focus, select:focus { outline: none; border-color: var(--navy); box-shadow
 }
 .tab.active { background: #fff; color: var(--navy); box-shadow: 0 1px 2px rgba(15, 23, 42, 0.1); }
 
+/* ---------- Message box ---------- */
 [hidden] { display: none !important; }
 
 .notice {
@@ -157,18 +92,72 @@ input:focus, select:focus { outline: none; border-color: var(--navy); box-shadow
 .notice.error   { background: var(--red-bg);   color: var(--red);   border-color: #fecaca; }
 .notice.success { background: var(--green-bg); color: var(--green); border-color: #bbf7d0; }
 
-.grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0 16px;
-}
-.span-2 { grid-column: span 2; }
+/* ---------- Form fields ---------- */
+.field { margin-bottom: 16px; }
+label { display: block; margin-bottom: 6px; font-size: 13px; font-weight: 500; }
 
-/* ---------- Phones ---------- */
+input, select {
+  width: 100%;
+  height: 42px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--text);
+  font: inherit;
+}
+input::placeholder { color: #94a3b8; }
+input:focus, select:focus { outline: none; border-color: var(--navy); box-shadow: 0 0 0 3px rgba(29, 58, 138, 0.15); }
+
+/* ---------- Error messages ---------- */
+.field.invalid input,
+.field.invalid select { border-color: var(--red); }
+
+.error { display: block; margin-top: 4px; font-size: 12px; color: var(--red); }
+.error:empty { display: none; }
+
+/* ---------- Password box with Show button ---------- */
+.pw-wrap { position: relative; }
+.pw-wrap input { padding-right: 60px; }
+.toggle-pw {
+  position: absolute;
+  right: 6px;
+  top: 6px;
+  height: 30px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--navy);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+}
+.toggle-pw:hover { background: var(--soft); }
+
+/* ---------- Button and link ---------- */
+.btn {
+  width: 100%;
+  height: 44px;
+  margin-top: 4px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--navy);
+  color: #fff;
+  font: inherit;
+  font-weight: 500;
+  cursor: pointer;
+}
+.btn:hover { background: var(--navy-dark); }
+.btn:focus-visible, .tab:focus-visible, .toggle-pw:focus-visible { outline: 2px solid var(--navy); outline-offset: 2px; }
+
+.switch-text { margin: 16px 0 0; text-align: center; color: var(--muted); }
+.switch-text a { color: var(--navy); font-weight: 500; text-decoration: none; }
+.switch-text a:hover { text-decoration: underline; }
+
+/* ---------- Phones (keep this last) ---------- */
 @media (max-width: 560px) {
-  .topbar { padding: 0 16px; }
   .page { padding: 24px 12px; }
   .card { padding: 24px 18px; }
-  .grid { grid-template-columns: 1fr; }
-  .span-2 { grid-column: auto; }
 }

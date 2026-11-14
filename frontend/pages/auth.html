@@ -8,17 +8,6 @@
   <link rel="stylesheet" href="../styles/auth.css">
 </head>
 <body>
-  <header class="topbar">
-    <a href="#" class="brand">
-      <span class="logo">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/></svg>
-      </span>
-      <span>
-        <span class="brand-name">Warden</span><br>
-        <span class="brand-sub">Hostel management</span>
-      </span>
-    </a>
-  </header>
 
   <main class="page">
     <section class="card">
@@ -27,17 +16,18 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
         </span>
         <h1 id="form-title">Log in</h1>
-        <p id="form-sub">Use your Student ID and password to continue.</p>
+        <p id="form-sub">Use your email and password to continue.</p>
       </div>
       <div class="tabs" role="tablist">
         <button type="button" class="tab active" data-mode="login" role="tab" aria-selected="true">Log in</button>
         <button type="button" class="tab" data-mode="signup" role="tab" aria-selected="false">Sign up</button>
       </div>
       <div class="notice" id="notice" role="alert" hidden></div>
+
       <form id="login-form" novalidate>
         <div class="field">
-          <label for="login-id">Student ID</label>
-          <input id="login-id" name="studentId" type="text" autocomplete="username" placeholder="e.g. B25CS030" data-rule="required">
+          <label for="login-email">Email</label>
+          <input id="login-email" name="email" type="email" autocomplete="username" placeholder="you@example.com" data-rule="email">
           <small class="error"></small>
         </div>
 
@@ -52,81 +42,42 @@
 
         <button type="submit" class="btn">Log in</button>
         <p class="switch-text">New here? <a href="#signup" data-mode="signup">Create an account</a></p>
-
       </form>
+
       <form id="signup-form" novalidate hidden>
-        <div class="grid">
+        <div class="field">
+          <label for="su-email">Email</label>
+          <input id="su-email" name="email" type="email" autocomplete="email" placeholder="you@example.com" data-rule="email">
+          <small class="error"></small>
+        </div>
 
-          <div class="field span-2">
-            <label for="su-name">Full name</label>
-            <input id="su-name" name="name" type="text" autocomplete="name" placeholder="Your full name" data-rule="name">
-            <small class="error"></small>
+        <div class="field">
+          <label for="su-password">Password</label>
+          <div class="pw-wrap">
+            <input id="su-password" name="password" type="password" autocomplete="new-password" placeholder="Create a password" data-rule="password">
+            <button type="button" class="toggle-pw" data-target="su-password">Show</button>
           </div>
+          <small class="error"></small>
+        </div>
 
-          <div class="field">
-            <label for="su-id">Student ID</label>
-            <input id="su-id" name="studentId" type="text" placeholder="e.g. B25CS030" data-rule="studentId">
-            <small class="error"></small>
+        <div class="field">
+          <label for="su-confirm">Confirm password</label>
+          <div class="pw-wrap">
+            <input id="su-confirm" name="confirm" type="password" autocomplete="new-password" placeholder="Re-enter password" data-rule="confirm">
+            <button type="button" class="toggle-pw" data-target="su-confirm">Show</button>
           </div>
-
-          <div class="field">
-            <label for="su-phone">Phone no.</label>
-            <input id="su-phone" name="phone" type="tel" autocomplete="tel" placeholder="10-digit mobile number" data-rule="phone">
-            <small class="error"></small>
-          </div>
-
-          <div class="field span-2">
-            <label for="su-email">Email</label>
-            <input id="su-email" name="email" type="email" autocomplete="email" placeholder="you@example.com" data-rule="email">
-            <small class="error"></small>
-          </div>
-
-          <div class="field">
-            <label for="su-hostel">Hostel</label>
-            <select id="su-hostel" name="hostel" data-rule="hostel">
-              <option value="">Select hostel</option>
-              <option>Kanhar</option>
-              <option>Gopad</option>
-              <option>Indravati</option>
-              <option>Shivnath</option>
-            </select>
-            <small class="error"></small>
-          </div>
-
-          <div class="field">
-            <label for="su-room">Room no.</label>
-            <input id="su-room" name="room" type="text" placeholder="e.g. A-214" data-rule="room">
-            <small class="error"></small>
-          </div>
-
-          <div class="field">
-            <label for="su-password">Password</label>
-            <div class="pw-wrap">
-              <input id="su-password" name="password" type="password" autocomplete="new-password" placeholder="Create a password" data-rule="password">
-              <button type="button" class="toggle-pw" data-target="su-password">Show</button>
-            </div>
-            <small class="error"></small>
-          </div>
-
-          <div class="field">
-            <label for="su-confirm">Confirm password</label>
-            <div class="pw-wrap">
-              <input id="su-confirm" name="confirm" type="password" autocomplete="new-password" placeholder="Re-enter password" data-rule="confirm">
-              <button type="button" class="toggle-pw" data-target="su-confirm">Show</button>
-            </div>
-            <small class="error"></small>
-          </div>
-
+          <small class="error"></small>
         </div>
 
         <button type="submit" class="btn">Create account</button>
         <p class="switch-text">Already have an account? <a href="#login" data-mode="login">Log in</a></p>
-
       </form>
     </section>
   </main>
 
   <footer class="footer">Warden · Hostel Management</footer>
+
+  <script src="../script/auth.js"></script>
 
 </body>
 </html>
