@@ -166,8 +166,7 @@ function openModal(id) {
         detail("Raised on", esc(i.raisedOn || "—")) +
         detail("Priority", esc(i.priority)) +
         detail("Resolved on", esc(i.resolvedOn || "—")) +
-        `<div class="detailItem fullWidth"><label>Issue</label><p>${esc(i.description)}</p></div>` +
-        `<div class="detailItem fullWidth"><label>Team remarks</label><p>${esc(i.remarks) || "No remarks yet."}</p></div>`;
+        `<div class="detailItem fullWidth"><label>Issue</label><p>${esc(i.description)}</p></div>`
 
     const statusSelect = document.getElementById("modalStatusSelect");
     if (statusSelect) {
