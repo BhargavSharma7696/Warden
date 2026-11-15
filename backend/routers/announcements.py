@@ -20,6 +20,7 @@ class AnnouncementCreate(BaseModel):
     date: Optional[str] = None
     summary: Optional[str] = None
     details: Optional[Dict[str, Any]] = None
+    hostel: Optional[str] = None
 
 
 def _format_announcement(row: Any) -> Dict[str, Any]:
@@ -54,6 +55,9 @@ def create_announcement(
     data: AnnouncementCreate,
     user: dict = Depends(require_role("warden", "admin")),
 ):
+    if user.get("role") not in ("warden", "admin"):
+        raise HTTPException(status.HTTP_403_FORBIDDEN, "Not allowed")
+
     date_val = data.date or datetime.now().strftime("%d %b %Y")
     summary_val = data.summary.strip() if data.summary else None
     details_val = data.details
@@ -71,6 +75,9 @@ def create_announcement(
 
     if details_val is None or not isinstance(details_val, dict):
         details_val = {}
+
+    if data.hostel and "Hostels" not in details_val:
+        details_val["Hostels"] = data.hostel
 
     details_json = json.dumps(details_val)
 

@@ -197,5 +197,26 @@ function showDetails(index) {
     detailBody.innerHTML = bodyHTML;
 }
 
+// Check if user is admin or warden to display create announcement button
+async function checkAdmin() {
+    const token = localStorage.getItem("token");
+    if (!token) return;
+    try {
+        const res = await fetch(`${API}/auth/me`, {
+            headers: { Authorization: `Bearer ${token}` },
+        });
+        if (res.ok) {
+            const user = await res.json();
+            if (user && (user.role === "admin" || user.role === "warden")) {
+                const btn = document.getElementById("createAnnouncementBtn");
+                if (btn) btn.hidden = false;
+            }
+        }
+    } catch (e) {
+        console.error("Failed to check user role", e);
+    }
+}
+
 // Start loading announcements when the page is ready.
 getAnnouncements();
+checkAdmin();
