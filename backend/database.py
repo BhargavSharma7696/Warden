@@ -111,5 +111,19 @@ def init_db() -> None:
         except Exception as e:
             print(f"Warning: Failed to seed announcements: {e}")
 
+    # Seed default warden user if not exists
+    warden = conn.execute("SELECT id, role FROM users WHERE email = ?", ("wardeniitbh@gmail.com",)).fetchone()
+    if not warden:
+        try:
+            from security import hash_password
+            conn.execute(
+                "INSERT INTO users (email, password_hash, role) VALUES (?, ?, ?)",
+                ("wardeniitbh@gmail.com", hash_password("warden@123"), "warden")
+            )
+        except Exception as e:
+            print(f"Warning: Failed to seed default warden user: {e}")
+    elif warden["role"] != "warden":
+        conn.execute("UPDATE users SET role = 'warden' WHERE email = ?", ("wardeniitbh@gmail.com",))
+
     conn.commit()
     conn.close()

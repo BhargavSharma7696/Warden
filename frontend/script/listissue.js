@@ -1,4 +1,6 @@
-const API = "https://warden-vspr.onrender.com";
+const API = (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1" || window.location.protocol === "file:")
+    ? "http://127.0.0.1:8000"
+    : "https://warden-vspr.onrender.com";
 
 const state = {
     issues: [],
