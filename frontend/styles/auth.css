@@ -133,8 +133,9 @@ input:focus, select:focus { outline: none; border-color: var(--navy); box-shadow
   font-size: 12px;
   font-weight: 500;
   cursor: pointer;
+  transition: opacity 0.2s ease;
 }
-.toggle-pw:hover { background: var(--soft); }
+.toggle-pw:hover { opacity: 0.75; }
 
 /* ---------- Button and link ---------- */
 .btn {
@@ -148,8 +149,9 @@ input:focus, select:focus { outline: none; border-color: var(--navy); box-shadow
   font: inherit;
   font-weight: 500;
   cursor: pointer;
+  transition: opacity 0.2s ease;
 }
-.btn:hover { background: var(--navy-dark); }
+.btn:hover { opacity: 0.85; }
 .btn:focus-visible, .tab:focus-visible, .toggle-pw:focus-visible { outline: 2px solid var(--navy); outline-offset: 2px; }
 
 .switch-text { margin: 16px 0 0; text-align: center; color: var(--muted); }

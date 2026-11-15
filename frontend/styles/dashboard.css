@@ -64,6 +64,10 @@
     border: none;
     margin-right: 20px;
     cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+.currentIssuesRedirect:hover{
+    opacity: 0.85;
 }
 .raiseIssueRedirect{
     width: 56px;
@@ -74,6 +78,10 @@
     background: #173F8A;
     color: #FFFFFF;
     cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+.raiseIssueRedirect:hover{
+    opacity: 0.85;
 }
 .raiseIssueText{
     color:#173F8A;

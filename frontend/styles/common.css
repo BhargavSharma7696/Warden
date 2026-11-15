@@ -78,16 +78,16 @@ a {
   color: inherit;         
 }
 .listIssueText{
-    transition: color 0.3s ease-in-out 0.1s;
+    transition: opacity 0.2s ease;
 }
 .listIssueText:hover{
-    color: #173F8A;
+    opacity: 0.75;
 }
 .announcementText{
-    transition: color 0.3s ease-in-out 0.1s;
+    transition: opacity 0.2s ease;
 }
 .announcementText:hover{
-    color: #173F8A;
+    opacity: 0.75;
 }
  
 
