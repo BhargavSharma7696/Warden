@@ -519,6 +519,11 @@ body {
     transition: opacity 0.15s ease;
 }
 
+.deleteButton[hidden],
+.deleteButton.is-hidden {
+    display: none !important;
+}
+
 .deleteButton:hover {
     opacity: 0.85;
 }

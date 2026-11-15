@@ -180,9 +180,13 @@ function openModal(id) {
     if (deleteBtn) {
         if (i.canDelete) {
             deleteBtn.hidden = false;
+            deleteBtn.style.display = "inline-flex";
+            deleteBtn.classList.remove("is-hidden");
             deleteBtn.onclick = () => deleteIssue(i.id);
         } else {
             deleteBtn.hidden = true;
+            deleteBtn.style.display = "none";
+            deleteBtn.classList.add("is-hidden");
             deleteBtn.onclick = null;
         }
     }
@@ -293,6 +297,13 @@ async function deleteIssue(id) {
 function closeModal() {
     overlay.hidden = true;
     document.body.style.overflow = "";
+    const deleteBtn = document.getElementById("modalDelete");
+    if (deleteBtn) {
+        deleteBtn.hidden = true;
+        deleteBtn.style.display = "none";
+        deleteBtn.classList.add("is-hidden");
+        deleteBtn.onclick = null;
+    }
 }
 
 /* ---------- events ---------- */

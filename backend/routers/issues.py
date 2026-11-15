@@ -54,7 +54,17 @@ def _format_issue(row: Any, current_user: Optional[Dict[str, Any]] = None) -> Di
     can_delete = False
     can_update_status = False
     if current_user:
-        is_owner = (bool(item.get("user_id")) and item.get("user_id") == current_user.get("id")) or (bool(item.get("email")) and item.get("email") == current_user.get("email"))
+        user_id_match = (
+            item.get("user_id") is not None
+            and str(item.get("user_id")).strip() != ""
+            and str(item.get("user_id")) == str(current_user.get("id"))
+        )
+        email_match = (
+            bool(item.get("email"))
+            and bool(current_user.get("email"))
+            and str(item.get("email")).strip().lower() == str(current_user.get("email")).strip().lower()
+        )
+        is_owner = user_id_match or email_match
         is_admin = current_user.get("role") in ("warden", "admin")
         can_delete = is_owner or is_admin
         can_update_status = is_admin
@@ -222,7 +232,17 @@ def delete_issue(
         )
 
     item = dict(row)
-    is_owner = (bool(item.get("user_id")) and item.get("user_id") == user.get("id")) or (bool(item.get("email")) and item.get("email") == user.get("email"))
+    user_id_match = (
+        item.get("user_id") is not None
+        and str(item.get("user_id")).strip() != ""
+        and str(item.get("user_id")) == str(user.get("id"))
+    )
+    email_match = (
+        bool(item.get("email"))
+        and bool(user.get("email"))
+        and str(item.get("email")).strip().lower() == str(user.get("email")).strip().lower()
+    )
+    is_owner = user_id_match or email_match
     is_admin = user.get("role") in ("warden", "admin")
 
     if not is_owner and not is_admin:
