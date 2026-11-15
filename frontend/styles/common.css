@@ -90,7 +90,50 @@ a {
     opacity: 0.75;
 }
  
+/* ---------- Profile dropdown ---------- */
+.profileMenu { position: relative; }
+.profileBtn { display: block; padding: 0; border: 0; background: transparent; border-radius: 50%; cursor: pointer; }
+.profileBtn img { display: block; }
+.profileBtn:focus-visible { outline: 2px solid #1a3a8a; outline-offset: 2px; }
 
+.profileDropdown {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 10px);
+  min-width: 170px;
+  padding: 6px;
+  background: #fff;
+  border: 1px solid #dbe3f0;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
+  z-index: 1000;
+}
+.profileDropdown[hidden] { display: none; }
+.profileDropdown a {
+  display: block;
+  padding: 10px 12px;
+  border-radius: 8px;
+  color: #1a3a8a;
+  text-decoration: none;
+  font-size: 14px;
+}
+.profileDropdown a:hover { background: #eef3fc; }
+
+/* ---------- Log out button ---------- */
+.logoutBtn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #edf3ff;
+  color: #1a3a8a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+.logoutBtn svg { width: 20px; height: 20px; }
+.logoutBtn:hover { background: #dbe7ff; }
+.logoutBtn:focus-visible { outline: 2px solid #1a3a8a; outline-offset: 2px; }
 
 * {
   margin: 0;
