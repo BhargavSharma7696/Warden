@@ -245,6 +245,30 @@ body {
     color: #166534;
 }
 
+.statusSelect {
+    padding: 5px 10px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    background-color: #ffffff;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    color: #1e293b;
+    outline: none;
+    cursor: pointer;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.statusSelect:focus {
+    border-color: #173F8A;
+    box-shadow: 0 0 0 2px rgba(23, 63, 138, 0.15);
+}
+
+.statusSelect:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
 /* Cards view */
 .cardGrid {
     display: grid;
@@ -466,6 +490,49 @@ body {
     line-height: 1.5;
     overflow-wrap: break-word;
     word-break: break-word;
+}
+
+.modalActions {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.modalActions .submitButton {
+    flex: 1;
+}
+
+.deleteButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    padding: 0;
+    background-color: #173F8A;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.15s ease, opacity 0.15s ease;
+}
+
+.deleteButton:hover {
+    background-color: #1D4ED8;
+}
+
+.deleteButton:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.deleteIcon {
+    width: 22px;
+    height: 22px;
+    filter: brightness(0) invert(1);
+    display: block;
+    pointer-events: none;
 }
 
 .submitButton {

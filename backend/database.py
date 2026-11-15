@@ -41,6 +41,7 @@ def init_db() -> None:
         CREATE TABLE IF NOT EXISTS issues (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             user_id INTEGER,
+            email TEXT,
             student_id TEXT,
             student_name TEXT,
             room_number TEXT,
@@ -65,6 +66,7 @@ def init_db() -> None:
     cursor.execute("PRAGMA table_info(issues)")
     existing_cols = {row[1] for row in cursor.fetchall()}
     for col, col_def in [
+        ("email", "TEXT"),
         ("title", "TEXT"),
         ("remarks", "TEXT DEFAULT ''"),
         ("raised_on", "TEXT"),

@@ -148,8 +148,15 @@ function openModal(id) {
     document.getElementById("modalTitle").textContent = i.title;
     document.getElementById("modalSub").textContent = `${i.hostel} · Room ${i.room}`;
 
+    const statusHtml = i.canUpdateStatus
+        ? `<select id="modalStatusSelect" class="statusSelect" data-id="${i.id}">
+             <option value="Pending" ${i.status === "Pending" ? "selected" : ""}>Pending</option>
+             <option value="Resolved" ${i.status === "Resolved" ? "selected" : ""}>Resolved</option>
+           </select>`
+        : statusPill(i.status);
+
     document.getElementById("modalBody").innerHTML =
-        detail("Status", statusPill(i.status)) +
+        detail("Status", statusHtml) +
         detail("Category", esc(i.category)) +
         detail("Raised by", esc(i.studentName)) +
         detail("Student ID", esc(i.studentId)) +
@@ -160,9 +167,125 @@ function openModal(id) {
         `<div class="detailItem fullWidth"><label>Issue</label><p>${esc(i.description)}</p></div>` +
         `<div class="detailItem fullWidth"><label>Team remarks</label><p>${esc(i.remarks) || "No remarks yet."}</p></div>`;
 
+    const statusSelect = document.getElementById("modalStatusSelect");
+    if (statusSelect) {
+        statusSelect.addEventListener("change", (e) => {
+            changeIssueStatus(i.id, e.target.value);
+        });
+    }
+
+    const deleteBtn = document.getElementById("modalDelete");
+    if (deleteBtn) {
+        if (i.canDelete) {
+            deleteBtn.hidden = false;
+            deleteBtn.onclick = () => deleteIssue(i.id);
+        } else {
+            deleteBtn.hidden = true;
+            deleteBtn.onclick = null;
+        }
+    }
+
     overlay.hidden = false;
     document.body.style.overflow = "hidden";
     document.getElementById("modalClose").focus();
+}
+
+async function changeIssueStatus(id, newStatus) {
+    const token = localStorage.getItem("token");
+    if (!token) {
+        window.location.href = "auth.html";
+        return;
+    }
+
+    const selectEl = document.getElementById("modalStatusSelect");
+    if (selectEl) selectEl.disabled = true;
+
+    try {
+        const res = await fetch(`${API}/issues/${id}/status`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            },
+            body: JSON.stringify({ status: newStatus })
+        });
+
+        if (res.status === 401) {
+            localStorage.removeItem("token");
+            window.location.href = "auth.html";
+            return;
+        }
+
+        if (!res.ok) {
+            const err = await res.json().catch(() => ({}));
+            alert(err.detail || "Could not update status");
+            if (selectEl) selectEl.disabled = false;
+            return;
+        }
+
+        const updated = await res.json();
+        const index = state.issues.findIndex((x) => x.id === Number(id));
+        if (index !== -1) {
+            state.issues[index] = { ...state.issues[index], ...updated };
+        }
+
+        openModal(id);
+        render();
+    } catch (err) {
+        console.error("Status update failed:", err);
+        alert("Failed to update status. Please try again.");
+        if (selectEl) selectEl.disabled = false;
+    }
+}
+
+async function deleteIssue(id) {
+    if (!confirm("Are you sure you want to delete this issue?")) {
+        return;
+    }
+
+    const token = localStorage.getItem("token");
+    if (!token) {
+        window.location.href = "auth.html";
+        return;
+    }
+
+    const deleteBtn = document.getElementById("modalDelete");
+    if (deleteBtn) {
+        deleteBtn.disabled = true;
+        deleteBtn.style.opacity = "0.5";
+    }
+
+    try {
+        const res = await fetch(`${API}/issues/${id}`, {
+            method: "DELETE",
+            headers: { Authorization: `Bearer ${token}` }
+        });
+
+        if (res.status === 401) {
+            localStorage.removeItem("token");
+            window.location.href = "auth.html";
+            return;
+        }
+
+        if (!res.ok) {
+            const err = await res.json().catch(() => ({}));
+            alert(err.detail || "Could not delete issue");
+            return;
+        }
+
+        // Remove from local state and update UI
+        state.issues = state.issues.filter((x) => x.id !== Number(id));
+        closeModal();
+        render();
+    } catch (err) {
+        console.error("Delete failed:", err);
+        alert("Failed to delete issue. Please try again.");
+    } finally {
+        if (deleteBtn) {
+            deleteBtn.disabled = false;
+            deleteBtn.style.opacity = "1";
+        }
+    }
 }
 
 function closeModal() {
