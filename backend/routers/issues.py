@@ -54,7 +54,7 @@ def _format_issue(row: Any, current_user: Optional[Dict[str, Any]] = None) -> Di
     can_delete = False
     can_update_status = False
     if current_user:
-        is_owner = (item.get("user_id") == current_user.get("id")) or (bool(item.get("email")) and item.get("email") == current_user.get("email"))
+        is_owner = (bool(item.get("user_id")) and item.get("user_id") == current_user.get("id")) or (bool(item.get("email")) and item.get("email") == current_user.get("email"))
         is_admin = current_user.get("role") in ("warden", "admin")
         can_delete = is_owner or is_admin
         can_update_status = is_admin
@@ -156,16 +156,7 @@ def create_issue(
 @router.get("/", response_model=List[Dict[str, Any]], include_in_schema=False)
 def get_issues(user: dict = Depends(get_current_user)) -> List[Dict[str, Any]]:
     conn = get_db()
-    role = user.get("role")
-    if role in ("warden", "admin"):
-        rows = conn.execute("SELECT * FROM issues ORDER BY id DESC").fetchall()
-    elif role == "student":
-        rows = conn.execute(
-            "SELECT * FROM issues WHERE user_id = ? OR email = ? OR (user_id IS NULL AND email IS NULL) ORDER BY id DESC",
-            (user["id"], user.get("email")),
-        ).fetchall()
-    else:
-        rows = []
+    rows = conn.execute("SELECT * FROM issues ORDER BY id DESC").fetchall()
     conn.close()
 
     return [_format_issue(r, current_user=user) for r in rows]
@@ -231,7 +222,7 @@ def delete_issue(
         )
 
     item = dict(row)
-    is_owner = (item.get("user_id") == user.get("id")) or (bool(item.get("email")) and item.get("email") == user.get("email"))
+    is_owner = (bool(item.get("user_id")) and item.get("user_id") == user.get("id")) or (bool(item.get("email")) and item.get("email") == user.get("email"))
     is_admin = user.get("role") in ("warden", "admin")
 
     if not is_owner and not is_admin:
