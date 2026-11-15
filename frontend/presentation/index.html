@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hostel Management & Support Portal - Project Presentation (CSP-203)</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="top-nav">
+        <div class="nav-left">
+            <img src="../cnt/icon.png" alt="Portal Logo" class="nav-logo">
+            <div>
+                <span class="project-title">Hostel Management Portal</span>
+                <span class="project-subtitle">CSP-203 WebDev Project &bull; IIT Bhilai</span>
+            </div>
+        </div>
+        <div class="nav-center">
+            <span class="slide-indicator" id="slideIndicator">Slide 1 of 16</span>
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+        </div>
+        <div class="nav-right">
+            <button class="nav-btn" id="btnNotes" title="Toggle Speaker Notes (S)">Notes [S]</button>
+            <button class="nav-btn" id="btnGrid" title="Slide Overview (G)">Grid [G]</button>
+            <button class="nav-btn" id="btnPrint" title="Print to PDF (P)">Print PDF</button>
+            <button class="nav-btn" id="btnFullscreen" title="Fullscreen (F)">Fullscreen [F]</button>
+            <div class="nav-arrows">
+                <button class="arrow-btn" id="btnPrev" title="Previous Slide (←)">&larr;</button>
+                <button class="arrow-btn" id="btnNext" title="Next Slide (&rarr;)">&rarr;</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="deck-container">
+        <!-- Slide 1: Title -->
+        <section class="slide active" data-slide="1" data-title="Title & Overview">
+            <div class="slide-content title-slide-layout">
+                <div class="title-left">
+                    <span class="eyebrow-tag">CSP-203 Web Development Project &bull; Fall 2026</span>
+                    <h1 class="main-title">Hostel Management &amp; Support Portal</h1>
+                    <p class="main-subtitle">An Intelligent, Secure, and Automated Campus Living Ecosystem</p>
+                    
+                    <div class="feature-pills">
+                        <span class="pill">AI-Assisted Issue Triage</span>
+                        <span class="pill">Role-Governed Administration</span>
+                        <span class="pill">Targeted Campus Notices</span>
+                    </div>
+
+                    <div class="meta-card">
+                        <div class="meta-row"><span>Course:</span><strong>CSP-203: Web Development</strong></div>
+                        <div class="meta-row"><span>Institution:</span><strong>Indian Institute of Technology Bhilai</strong></div>
+                        <div class="meta-row"><span>Architecture:</span><strong>FastAPI &bull; SQLite &bull; JWT &bull; Google Gemini &bull; Vanilla JS</strong></div>
+                    </div>
+                </div>
+                <div class="title-right">
+                    <div class="mock-browser-frame">
+                        <div class="mock-bar">
+                            <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                            <span class="mock-url">https://hostel.iitbhilai.ac.in/dashboard</span>
+                        </div>
+                        <div class="mock-body hero-visual">
+                            <img src="../cnt/iitbhilai.png" alt="IIT Bhilai Campus" class="hero-image">
+                            <div class="hero-overlay-badge">
+                                <h3>Unified Hostel Hub</h3>
+                                <p>Kanhar &bull; Indravati &bull; Shivnath &bull; Gopad</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <aside class="speaker-notes">
+                <strong>Speaker Notes:</strong> "Good morning, professors and peers. Welcome to our presentation for the Hostel Management and Support Portal. Modern campus life involves hundreds of maintenance requests and essential notices across multiple hostel blocks. Our project solves the friction of traditional paper complaint registers by delivering a centralized, role-governed, and AI-assisted web application built on FastAPI, SQLite, and vanilla web standards."
+            </aside>
+        </section>
+
+        <!-- Slide 2: Problem Statement -->
+        <section class="slide" data-slide="2" data-title="Problem Statement">
+            <div class="slide-content">
+                <span class="eyebrow-tag">Operational Challenges</span>
+                <h2 class="slide-heading">The Problem: Friction in Traditional Hostel Living</h2>
+                <div class="card-grid col-4">
+                    <div class="info-card border-red">
+                        <div class="card-num">01</div>
+                        <h3>Manual Registers</h3>
+                        <p>Complaints written in physical registers are frequently misplaced, unreadable, or ignored with zero audit trail.</p>
+                    </div>
+                    <div class="info-card border-red">
+                        <div class="card-num">02</div>
+                        <h3>No Student Tracking</h3>
+                        <p>Students have no status visibility. They cannot know whether an electrician or plumber was dispatched.</p>
+                    </div>
+                    <div class="info-card border-red">
+                        <div class="card-num">03</div>
+                        <h3>Untriaged Emergencies</h3>
+                        <p>Urgent hazards (sparking switches, burst pipes) sit in the same queue as routine carpentry with no priority flags.</p>
+                    </div>
+                    <div class="info-card border-red">
+                        <div class="card-num">04</div>
+                        <h3>Fragmented Notices</h3>
+                        <p>Curfew circulars and water cuts get buried in informal chat channels or posted on physical boards seen too late.</p>
+                    </div>
+                </div>
+
+                <div class="callout-box">
+                    <strong>Core Need:</strong> A single digital platform that automates ticket triage, enforces strict administrative accountability, and broadcasts actionable notices to specific hostel blocks.
+                </div>
+            </div>
+            <aside class="speaker-notes">
+                <strong>Speaker Notes:</strong> "In collegiate environments like IIT Bhilai, residential students frequently encounter facility issues. The conventional approach involves handwritten registers in caretaker offices. This results in four key issues: zero real-time tracking for students, lack of automated prioritization for urgent hazards, fragmented broadcast notices, and absence of accountability. Our goal was to engineer a purpose-built system that automates triage, secures access, and keeps every resident informed."
+            </aside>
+        </section>
+
+        <!-- Slide 3: The Solution -->
+        <section class="slide" data-slide="3" data-title="The Solution">
+            <div class="slide-content">
+                <span class="eyebrow-tag">Value Proposition</span>
+                <h2 class="slide-heading">The Solution: Three-Pillar Digital Ecosystem</h2>
+                <div class="card-grid col-3">
+                    <div class="info-card highlight">
+                        <div class="card-icon">⚡</div>
+                        <h3>1. Intelligent Issue Lifecycle</h3>
+                        <ul class="bullet-list">
+                            <li>Instant ticket generation for room &amp; common area defects.</li>
+                            <li>LLM-powered automatic classification of Category and Urgency.</li>
+                            <li>Interactive 10-second notifications with hover-pause timer.</li>
+                        </ul>
+                    </div>
+                    <div class="info-card highlight">
+                        <div class="card-icon">🛡️</div>
+                        <h3>2. Role-Governed Administration</h3>
+                        <ul class="bullet-list">
+                            <li>Granular RBAC for Students, Wardens, and Administrators.</li>
+                            <li>Ownership-based deletion (students can only delete their own).</li>
+                            <li>Warden-only inline status toggle (Pending &harr; Resolved).</li>
+                        </ul>
+                    </div>
+                    <div class="info-card highlight">
+                        <div class="card-icon">📢</div>
+                        <h3>3. Targeted Announcements Hub</h3>
+                        <ul class="bullet-list">
+                            <li>Master-detail view displaying comprehensive circulars.</li>
+                            <li>Targeted broadcasts to All Hostels or specific blocks.</li>
+                            <li>Automatic extraction of schedules and maintenance contacts.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <aside class="speaker-notes">
+                <strong>Speaker Notes:</strong> "To address these pain points, we engineered a unified digital portal anchored on three key pillars: First, an intelligent issue lifecycle where complaints are analyzed in real time. Second, strict role-based governance guaranteeing that administrative actions like resolving tickets or broadcasting circulars are protected. Third, a clean announcements hub that structures messy notices into actionable metadata."
+            </aside>
+        </section>
+
+        <!-- Slide 4: System Architecture -->
+        <section class="slide" data-slide="4" data-title="System Architecture">
+            <div class="slide-content">
+                <span class="eyebrow-tag">Full-Stack Blueprint</span>
+                <h2 class="slide-heading">System Architecture &amp; Technology Stack</h2>
+                <div class="arch-split">
+                    <div class="arch-col">
+                        <div class="stack-box">
+                            <span class="stack-label">Frontend (Client Layer)</span>
+                            <p class="stack-tech">Vanilla HTML5 &bull; CSS3 &bull; ES6+ JavaScript</p>
+                            <p class="stack-desc">Sub-50ms render times, zero framework bundle bloat, responsive custom properties, accessible ARIA toasts.</p>
+                        </div>
+                        <div class="stack-box">
+                            <span class="stack-label">Backend (API Layer)</span>
+                            <p class="stack-tech">FastAPI (Python 3.14) &bull; Uvicorn ASGI</p>
+                            <p class="stack-desc">Asynchronous endpoints, strict Pydantic schema validation, centralized CORS, modular routers (/auth, /issues, /announcements).</p>
+                        </div>
+                        <div class="stack-box">
+                            <span class="stack-label">Data &amp; Security Layer</span>
+                            <p class="stack-tech">SQLite3 &bull; JWT (HS256) &bull; pwdlib (Argon2)</p>
+                            <p class="stack-desc">Relational foreign keys with cascade delete, 60-min token expiration, secure password hashing.</p>
+                        </div>
+                    </div>
+                    <div class="arch-col">
+                        <div class="mock-browser-frame">
+                            <div class="mock-bar"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="mock-url">Architecture Flow</span></div>
+                            <div class="mock-body code-body">
+<pre><code>[ Client Browser ]
+  │  HTML5 + Modular CSS + Vanilla JS
+  │  (Authorization: Bearer &lt;JWT&gt;)
+  ▼
+[ FastAPI Server ] ──► CORS &amp; Auth Dependencies
+  ├── /auth/login, /register, /me
+  ├── /issues (CRUD, Owner/Warden Guards)
+  └── /announcements (Admin/Warden Guards)
+  │
+  ├──► [ SQLite3 Database ] (hostel.db)
+  │      users ──(1:N)── issues
+  │      announcements
+  │
+  └──► [ Google Gemini 2.5 LLM ]
+         Auto-classification &amp; Resilient Fallback</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <aside class="speaker-notes">
+                <strong>Speaker Notes:</strong> "Looking at our technical architecture, we made intentional, production-grade engineering choices. On the frontend, we opted for zero heavy framework bloat—using modern vanilla JavaScript with async/await. On the backend, FastAPI handles HTTP requests with high concurrency and strict Pydantic validation. Data is stored in SQLite with relational foreign keys and JSON support, while Google's Gemini LLM runs asynchronously to analyze ticket content."
+            </aside>
+        </section>
+
+        <!-- Slide 5: Security & RBAC -->
+        <section class="slide" data-slide="5" data-title="Security & RBAC">
+            <div class="slide-content">
+                <span class="eyebrow-tag">Access Governance</span>
+                <h2 class="slide-heading">Security Architecture &amp; Role-Based Access Control</h2>
+                
+                <table class="rbac-table">
+                    <thead>
+                        <tr>
+                            <th>Capability / Operation</th>
+                            <th>Student Role</th>
+                            <th>Warden Role</th>
+                            <th>Admin Role</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Dashboard &amp; Profile Access</td>
+                            <td><span class="badge green">Allowed</span></td>
+                            <td><span class="badge green">Allowed</span></td>
+                            <td><span class="badge green">Allowed</span></td>
+                        </tr>
+                        <tr>
+                            <td>Raise Maintenance Issue</td>
+                            <td><span class="badge green">Allowed</span></td>
+                            <td><span class="badge green">Allowed</span></td>
+                            <td><span class="badge green">Allowed</span></td>
+                        </tr>
+                        <tr>
+                            <td>Delete Issue</td>
+                            <td><span class="badge yellow">Self-Owned Only</span></td>
+                            <td><span class="badge green">Any Issue</span></td>
+                            <td><span class="badge green">Any Issue</span></td>
+                        </tr>
+                        <tr>
+                            <td>Update Issue Status (Resolved/Pending)</td>
+                            <td><span class="badge red">Blocked (403)</span></td>
+                            <td><span class="badge green">Allowed</span></td>
+                            <td><span class="badge green">Allowed</span></td>
+                        </tr>
+                        <tr>
+                            <td>View Announcements Feed</td>
+                            <td><span class="badge green">Allowed</span></td>
+                            <td><span class="badge green">Allowed</span></td>
+                            <td><span class="badge green">Allowed</span></td>
+                        </tr>
+                        <tr>
+                            <td>Broadcast Announcement</td>
+                            <td><span class="badge red">Blocked (403)</span></td>
+                            <td><span class="badge green">Allowed</span></td>
+                            <td><span class="badge green">Allowed</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="callout-box info">
+                    <strong>Dual-Layer Enforcement:</strong> Client scripts dynamically adapt the DOM (hiding unauthorized buttons), while backend FastAPI route dependencies verify JWT claims. Any unauthorized direct API call returns <code>403 Forbidden</code>.
+                </div>
+            </div>
+            <aside class="speaker-notes">
+                <strong>Speaker Notes:</strong> "Security was designed from day one with defense-in-depth principles. Authentication uses signed JWT Bearer tokens with automated expiration. More importantly, we enforce a strict Role-Based Access Control matrix. A student can only delete issues that belong to their specific account, verified on the backend by matching user IDs and emails. Administrative actions—such as marking issues resolved or posting hostel announcements—are restricted strictly to wardens and admins."
+            </aside>
+        </section>
+
+        <!-- Slide 6: AI / LLM Triage -->
+        <section class="slide" data-slide="6" data-title="AI Triage & Fallback">
+            <div class="slide-content">
+                <span class="eyebrow-tag">Intelligence Layer</span>
+                <h2 class="slide-heading">Automated AI Triage &amp; Resilient Fallback Engine</h2>
+                <div class="triage-split">
+                    <div class="triage-card">
+                        <h3>Input Complaint</h3>
+                        <p class="sample-complaint">"My room fan is sparking whenever I switch on regulator level 3 and making a loud rattling noise."</p>
+                        <div class="flow-arrow">&darr; Passed to Gemini 2.5 Flash-Lite</div>
+                        <h3>Structured AI Output</h3>
+                        <div class="ai-tags">
+                            <span class="tag-badge">Category: Electricity</span>
+                            <span class="tag-badge urgent">Priority: Urgent</span>
+                        </div>
+                        <p class="summary-text"><strong>Summary:</strong> "Room fan sparking and vibrating abnormally on regulator speed 3."</p>
+                    </div>
+
+                    <div class="triage-card fallback-side">
+                        <h3>Resilient Fallback Design</h3>
+                        <p>What happens when third-party APIs face rate limits, network timeouts, or offline environments?</p>
+                        <div class="fallback-pill-box">
+                            <div class="f-pill">Category &rarr; <strong>"Not Defined"</strong></div>
+                            <div class="f-pill">Priority &rarr; <strong>"Medium"</strong></div>
+                            <div class="f-pill">Summary &rarr; <strong>Clean First 100 Characters</strong></div>
+                        </div>
+                        <p class="fallback-note">&bull; Zero server crashes &bull; Zero rejected student tickets &bull; Instant fail-safe response</p>
+                    </div>
+                </div>
+            </div>
+            <aside class="speaker-notes">
+                <strong>Speaker Notes:</strong> "One of our portal's standout capabilities is AI-assisted triage. Traditionally, students misclassify technical issues or caretakers have to read lengthy paragraphs to gauge urgency. We integrated Google Gemini to parse plain text into structured fields: Category, Priority, and Summary. Crucially, we designed this for resilience. If the API is offline or faces network timeouts, our backend doesn't crash; it gracefully defaults to 'Not Defined' category and 'Medium' priority."
+            </aside>
+        </section>
+
+        <!-- Slide 7: UI Walkthrough - Auth -->
+        <section class="slide" data-slide="7" data-title="UI: Authentication">
+            <div class="slide-content">
+                <span class="eyebrow-tag">User Experience &bull; Screen 1</span>
+                <h2 class="slide-heading">Authentication &amp; Session Management (auth.html)</h2>
+                <div class="ui-screen-split">
+                    <div class="screen-details">
+                        <h3>Key Features:</h3>
+                        <ul class="bullet-list">
+                            <li><strong>Tabbed Authentication:</strong> Switch between Sign In and Sign Up in a single card without page reloads.</li>
+                            <li><strong>Password Visibility Toggle:</strong> Integrated show/hide button with smooth opacity hover.</li>
+                            <li><strong>JWT Token Management:</strong> Token securely saved in <code>localStorage</code>; refreshed upon login.</li>
+                            <li><strong>Immediate Auth Interception:</strong> Header guard scripts on all internal pages redirect unauthorized visitors before page rendering.</li>
+                        </ul>
+                    </div>
+                    <div class="screen-mock">
+                        <div class="mock-browser-frame">
+                            <div class="mock-bar"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="mock-url">auth.html</span></div>
+                            <div class="mock-body auth-mock-preview">
+                                <div class="mini-auth-card">
+                                    <div class="mini-tabs"><span class="tab active">Sign in</span><span class="tab">Sign up</span></div>
+                                    <div class="mini-input">Email address: student@gmail.com</div>
+                                    <div class="mini-input">Password: &bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull; <span class="mini-show">Show</span></div>
+                                    <button class="mini-btn">Sign in to Hostel Portal</button>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="mock-caption">Placeholder: Replace with actual screenshot of auth.html</span>
+                    </div>
+                </div>
+            </div>
+            <aside class="speaker-notes">
+                <strong>Speaker Notes:</strong> "Here is our authentication interface. It provides a frictionless user experience with interactive tabs for registration and login, password visibility toggles, and instant validation feedback. From a security standpoint, session management is automated. As soon as a user logs in, their JWT is saved locally. If an unauthenticated user attempts to bookmark or directly enter the URL for internal pages, our script intercepts the load and redirects them to login immediately."
+            </aside>
+        </section>
+
+        <!-- Slide 8: UI Walkthrough - Dashboard -->
+        <section class="slide" data-slide="8" data-title="UI: Dashboard">
+            <div class="slide-content">
+                <span class="eyebrow-tag">User Experience &bull; Screen 2</span>
+                <h2 class="slide-heading">Central Campus Dashboard (dashboard.html)</h2>
+                <div class="ui-screen-split">
+                    <div class="screen-details">
+                        <h3>Key Features:</h3>
+                        <ul class="bullet-list">
+                            <li><strong>Role Synchronization:</strong> Top navigation updates dynamically to display "Student", "Warden", or "Admin".</li>
+                            <li><strong>Hostel Profiles:</strong> Rich information cards for Kanhar, Indravati, Shivnath, and Gopad residences.</li>
+                            <li><strong>Direct Action Triggers:</strong> Quick redirect buttons to view active issues and raise tickets with smooth opacity hover states.</li>
+                            <li><strong>Strict Auth Gate:</strong> Instant verification with <code>/auth/me</code> ensures public access is blocked.</li>
+                        </ul>
+                    </div>
+                    <div class="screen-mock">
+                        <div class="mock-browser-frame">
+                            <div class="mock-bar"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="mock-url">dashboard.html</span></div>
+                            <div class="mock-body">
+                                <div class="mini-dash-preview">
+                                    <div class="mini-dash-banner">
+                                        <h4>HOSTEL LIFE, BETTER CONNECTED</h4>
+                                        <div class="mini-btn-group">
+                                            <span class="btn-sm navy">Explore current issues</span>
+                                            <span class="btn-sm circle">+</span>
+                                        </div>
+                                    </div>
+                                    <div class="mini-hostel-row">
+                                        <div class="mini-h-card">Kanhar Hostel</div>
+                                        <div class="mini-h-card">Indravati Hostel</div>
+                                        <div class="mini-h-card">Shivnath Hostel</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="mock-caption">Placeholder: Replace with actual screenshot of dashboard.html</span>
+                    </div>
+                </div>
+            </div>
+            <aside class="speaker-notes">
+                <strong>Speaker Notes:</strong> "Once authenticated, users land on the Central Dashboard. It acts as the visual and functional anchor for campus life. Students and wardens see profiles of the four major residential halls—Kanhar, Indravati, Shivnath, and Gopad—alongside instant action triggers that take them straight to active issues or ticket creation. Notice our styling discipline: buttons use smooth opacity transitions rather than jarring color shifts, maintaining visual elegance."
+            </aside>
+        </section>
+
+        <!-- Slide 9: UI Walkthrough - Raise Issue -->
+        <section class="slide" data-slide="9" data-title="UI: Raise Issue">
+            <div class="slide-content">
+                <span class="eyebrow-tag">User Experience &bull; Screen 3</span>
+                <h2 class="slide-heading">Issue Submission &amp; Interactive Toast Feedback (raiseissue.html)</h2>
+                <div class="ui-screen-split">
+                    <div class="screen-details">
+                        <h3>Key Features:</h3>
+                        <ul class="bullet-list">
+                            <li><strong>Structured Form:</strong> Student ID, Full Name, Hostel, Room Number, Phone, and Problem Description.</li>
+                            <li><strong>10-Second Floating Toast:</strong> Replaces ugly browser alerts with an accessible, high-styled notification.</li>
+                            <li><strong>Hover-to-Pause Countdown:</strong> Notification timer freezes when the cursor hovers over it, giving students ample time to read.</li>
+                            <li><strong>Metadata Badges:</strong> Displays Ticket #, AI Category, and Urgency tag with clean slate/navy styling.</li>
+                        </ul>
+                    </div>
+                    <div class="screen-mock">
+                        <div class="mock-browser-frame">
+                            <div class="mock-bar"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="mock-url">raiseissue.html</span></div>
+                            <div class="mock-body toast-mock-preview">
+                                <div class="mini-toast-box">
+                                    <div class="toast-head">Issue Raised Successfully &times;</div>
+                                    <div class="toast-pills"><span class="tp blue">Ticket #014</span><span class="tp purple">Plumbing</span><span class="tp red">High</span></div>
+                                    <p class="toast-sub">Washroom tap leakage reported for Kanhar Room 204.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="mock-caption">Placeholder: Replace with actual screenshot of raiseissue.html + Toast</span>
+                    </div>
+                </div>
+            </div>
+            <aside class="speaker-notes">
+                <strong>Speaker Notes:</strong> "When a student needs to report an issue, they navigate to the Raise Issue interface. The form collects essential logistical details: room, hostel, and contact information. Upon submission, our custom interactive toast component takes over. Instead of standard alerts, it provides a polite 10-second notification detailing the assigned Ticket ID, Category, and Urgency. If the user hovers over the toast to read it, the countdown automatically pauses."
+            </aside>
+        </section>
+
+        <!-- Slide 10: UI Walkthrough - List Issues -->
+        <section class="slide" data-slide="10" data-title="UI: Issue Management">
+            <div class="slide-content">
+                <span class="eyebrow-tag">User Experience &bull; Screen 4</span>
+                <h2 class="slide-heading">Issue Tracking &amp; Governance (listissue.html)</h2>
+                <div class="ui-screen-split">
+                    <div class="screen-details">
+                        <h3>Key Features:</h3>
+                        <ul class="bullet-list">
+                            <li><strong>Dual-View Switcher:</strong> One-click toggle between Table/List view and Card Grid view.</li>
+                            <li><strong>Real-Time Status Tabs:</strong> Dynamic counters for All, Pending, and Resolved tickets.</li>
+                            <li><strong>Warden Status Dropdown:</strong> Wardens switch statuses instantly between Pending and Resolved.</li>
+                            <li><strong>Custom SVG Delete Action:</strong> Clean navy delete button exposed strictly to the ticket author and admins.</li>
+                            <li><strong>No Overflow Bug:</strong> Proper <code>overflow-wrap</code> ensures lengthy descriptions never break boundaries.</li>
+                        </ul>
+                    </div>
+                    <div class="screen-mock">
+                        <div class="mock-browser-frame">
+                            <div class="mock-bar"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="mock-url">listissue.html</span></div>
+                            <div class="mock-body table-mock-preview">
+                                <table class="mini-table">
+                                    <thead><tr><th>#</th><th>Issue</th><th>Category</th><th>Hostel</th><th>Status</th><th>Act</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>01</td><td>Water leakage</td><td>Plumbing</td><td>Kanhar</td><td><span class="st pending">Pending &#9662;</span></td><td><span class="del-ic">&times;</span></td></tr>
+                                        <tr><td>02</td><td>Power trip</td><td>Electricity</td><td>Shivnath</td><td><span class="st resolved">Resolved &#9662;</span></td><td><span class="del-ic">&times;</span></td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <span class="mock-caption">Placeholder: Replace with actual screenshot of listissue.html</span>
+                    </div>
+                </div>
+            </div>
+            <aside class="speaker-notes">
+                <strong>Speaker Notes:</strong> "This is our primary management hub—List Issues. We engineered a flexible interface that supports both a compact Table List view and an expansive Card Grid. Users can filter by status with dynamic counters. Notice the role differentiation: wardens get an inline status dropdown allowing them to mark an issue resolved on the fly. Students simply see the status badge. Furthermore, our custom SVG delete button is strictly exposed only if you own that issue or have administrative rights."
+            </aside>
+        </section>
+
+        <!-- Slide 11: UI Walkthrough - Announcements Hub -->
+        <section class="slide" data-slide="11" data-title="UI: Announcements Hub">
+            <div class="slide-content">
+                <span class="eyebrow-tag">User Experience &bull; Screen 5</span>
+                <h2 class="slide-heading">Campus Announcements Master-Detail View (announcement.html)</h2>
+                <div class="ui-screen-split">
+                    <div class="screen-details">
+                        <h3>Key Features:</h3>
+                        <ul class="bullet-list">
+                            <li><strong>Master-Detail Two-Column Grid:</strong> Left side lists all latest notices with summaries; right side shows complete details.</li>
+                            <li><strong>AI-Extracted Metadata Tables:</strong> Automatically displays affected hostels, maintenance teams, and schedules.</li>
+                            <li><strong>Protected Post Button:</strong> The <code>Post Announcement +</code> button is conditionally revealed only for verified admins/wardens via <code>/auth/me</code>.</li>
+                        </ul>
+                    </div>
+                    <div class="screen-mock">
+                        <div class="mock-browser-frame">
+                            <div class="mock-bar"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="mock-url">announcement.html</span></div>
+                            <div class="mock-body split-mock-preview">
+                                <div class="side-notices">
+                                    <div class="mini-notice sel">Water maintenance &bull; 15 Nov</div>
+                                    <div class="mini-notice">Curfew notice &bull; 14 Nov</div>
+                                </div>
+                                <div class="side-detail">
+                                    <h4>Water Supply Maintenance</h4>
+                                    <table class="mini-info-table">
+                                        <tr><td>Hostels</td><td>Kanhar, Indravati</td></tr>
+                                        <tr><td>Team</td><td>Plumbing Maintenance</td></tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="mock-caption">Placeholder: Replace with actual screenshot of announcement.html</span>
+                    </div>
+                </div>
+            </div>
+            <aside class="speaker-notes">
+                <strong>Speaker Notes:</strong> "Communication is vital during campus maintenance. The Announcements page uses a master-detail two-column architecture. On the left, students can click through recent notices; on the right, the complete circular is rendered. Notice the structured table at the center: our backend parses the announcement text and extracts key details like affected hostels, schedules, and responsible teams. Notice also that the 'Post announcement' button is visible only to administrators."
+            </aside>
+        </section>
+
+        <!-- Slide 12: UI Walkthrough - Raise Announcement -->
+        <section class="slide" data-slide="12" data-title="UI: Raise Announcement">
+            <div class="slide-content">
+                <span class="eyebrow-tag">User Experience &bull; Screen 6</span>
+                <h2 class="slide-heading">Publishing Official Notices (raiseannouncement.html)</h2>
+                <div class="ui-screen-split">
+                    <div class="screen-details">
+                        <h3>Key Features:</h3>
+                        <ul class="bullet-list">
+                            <li><strong>Admin-Restricted Portal:</strong> Accessible exclusively to verified Wardens and Administrators.</li>
+                            <li><strong>Multi-Hostel Targeting:</strong> Dropdown allows broadcasting to "All Hostels" or single blocks (Kanhar, Indravati, Shivnath, Gopad).</li>
+                            <li><strong>Structured Input:</strong> Title, Category, Team Designation, Target Block, and Full Circular Body.</li>
+                            <li><strong>Immediate Propagation:</strong> Published notices are instantly available to all student dashboards.</li>
+                        </ul>
+                    </div>
+                    <div class="screen-mock">
+                        <div class="mock-browser-frame">
+                            <div class="mock-bar"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="mock-url">raiseannouncement.html</span></div>
+                            <div class="mock-body form-mock-preview">
+                                <div class="mini-form">
+                                    <div class="f-group">Title: Scheduled Power Interruption</div>
+                                    <div class="f-group">Target: [ All Hostels &#9662; ]</div>
+                                    <div class="f-group">Team: Chief Warden Office</div>
+                                    <button class="mini-btn navy">Publish Announcement</button>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="mock-caption">Placeholder: Replace with actual screenshot of raiseannouncement.html</span>
+                    </div>
+                </div>
+            </div>
+            <aside class="speaker-notes">
+                <strong>Speaker Notes:</strong> "When wardens need to announce water maintenance or curfew circulars, they use the Raise Announcement page. They select target hostels—either all blocks or specific residences like Kanhar or Shivnath—and draft their notice. The backend associates the notice with their administrative credentials. Unauthorized access attempts trigger immediate redirection, protecting campus communication channels from spam or tampering."
+            </aside>
+        </section>
+
+        <!-- Slide 13: Database Design -->
+        <section class="slide" data-slide="13" data-title="Database Schema">
+            <div class="slide-content">
+                <span class="eyebrow-tag">Persistence Layer</span>
+                <h2 class="slide-heading">Database Schema &amp; Relational Architecture</h2>
+                
+                <div class="card-grid col-3">
+                    <div class="info-card">
+                        <h3>users</h3>
+                        <ul class="schema-list">
+                            <li><strong>id:</strong> INTEGER PRIMARY KEY</li>
+                            <li><strong>email:</strong> TEXT UNIQUE NOT NULL</li>
+                            <li><strong>password_hash:</strong> TEXT NOT NULL</li>
+                            <li><strong>role:</strong> CHECK(role IN ('student', 'warden', 'admin'))</li>
+                        </ul>
+                    </div>
+                    <div class="info-card">
+                        <h3>issues</h3>
+                        <ul class="schema-list">
+                            <li><strong>id:</strong> INTEGER PRIMARY KEY</li>
+                            <li><strong>user_id:</strong> FK &rarr; users(id) ON DELETE CASCADE</li>
+                            <li><strong>email, student_id, student_name</strong></li>
+                            <li><strong>room_number, hostel, phone</strong></li>
+                            <li><strong>title, description, summary</strong></li>
+                            <li><strong>category, priority, status</strong></li>
+                            <li><strong>raised_on, resolved_on, remarks</strong></li>
+                        </ul>
+                    </div>
+                    <div class="info-card">
+                        <h3>announcements</h3>
+                        <ul class="schema-list">
+                            <li><strong>id:</strong> INTEGER PRIMARY KEY</li>
+                            <li><strong>category, date, title</strong></li>
+                            <li><strong>summary, team, body</strong></li>
+                            <li><strong>details:</strong> TEXT (JSON Object)</li>
+                            <li><strong>created_at:</strong> TIMESTAMP</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="callout-box">
+                    <strong>Integrity Highlights:</strong> Foreign keys enforced via SQLite pragmas. Cascading deletes guarantee orphaned records are cleaned if an account is removed. JSON-serialized columns provide extensible metadata storage.
+                </div>
+            </div>
+            <aside class="speaker-notes">
+                <strong>Speaker Notes:</strong> "Behind our API lies a clean, relational SQLite database. The schema consists of three core entities: users, issues, and announcements. Foreign keys are enforced with cascading deletes. Notice the flexibility of the issues and announcements tables: we store structured attributes like dates, status, and room numbers alongside JSON-serialized details for rich metadata. Check constraints ensure that roles and statuses remain within authorized enums."
+            </aside>
+        </section>
+
+        <!-- Slide 14: Engineering Rigor -->
+        <section class="slide" data-slide="14" data-title="Engineering Rigor">
+            <div class="slide-content">
+                <span class="eyebrow-tag">Code Quality &bull; Best Practices</span>
+                <h2 class="slide-heading">Engineering Rigor &amp; Production Considerations</h2>
+                <div class="card-grid col-4">
+                    <div class="info-card highlight">
+                        <h3>Zero Framework Bloat</h3>
+                        <p>Total JS client footprint under <strong>50KB</strong>. No heavy React/Angular/Vue dependencies, resulting in lightning-fast initial load times.</p>
+                    </div>
+                    <div class="info-card highlight">
+                        <h3>Box Model Defense</h3>
+                        <p>Strict <code>box-sizing: border-box</code> and <code>overflow-wrap: break-word</code> prevent text overflow across long issue cards.</p>
+                    </div>
+                    <div class="info-card highlight">
+                        <h3>Micro-Interactions</h3>
+                        <p>Subtle opacity hover feedback (<code>opacity: 0.85</code>) replacing harsh color flashes for consistent brand styling.</p>
+                    </div>
+                    <div class="info-card highlight">
+                        <h3>Resilient Fallbacks</h3>
+                        <p>Graceful degradation when AI services are unreachable, ensuring zero operational downtime for student filings.</p>
+                    </div>
+                </div>
+            </div>
+            <aside class="speaker-notes">
+                <strong>Speaker Notes:</strong> "Throughout the project lifecycle, we emphasized engineering rigor over quick shortcuts. We tackled subtle front-end edge cases—such as long text strings breaking card boundaries—by enforcing rigorous overflow wrapping. We ensured our UI micro-interactions feel cohesive by standardizing on opacity transitions. And critically, our frontend delivers sub-50-millisecond initial loads because it is completely free of bulky JavaScript libraries or external CSS frameworks."
+            </aside>
+        </section>
+
+        <!-- Slide 15: Impact & Future Scope -->
+        <section class="slide" data-slide="15" data-title="Impact & Roadmap">
+            <div class="slide-content">
+                <span class="eyebrow-tag">Project Trajectory</span>
+                <h2 class="slide-heading">Demonstrated Impact &amp; Future Scalability</h2>
+                <div class="arch-split">
+                    <div class="arch-col">
+                        <div class="stack-box">
+                            <span class="stack-label">Current Quantifiable Impact</span>
+                            <ul class="bullet-list">
+                                <li><strong>100% Tracking:</strong> Full visibility for residential students into maintenance progress.</li>
+                                <li><strong>Zero Lost Complaints:</strong> Replaces fragile physical paper registers with immutable database records.</li>
+                                <li><strong>Instant Prioritization:</strong> Critical electrical/plumbing emergencies surfaced in seconds via AI triage.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="arch-col">
+                        <div class="stack-box">
+                            <span class="stack-label">Future Roadmap (Phase 2 &bull; 2027)</span>
+                            <ul class="bullet-list">
+                                <li><strong>Live WebSockets:</strong> Real-time push notifications when issue status changes to Resolved.</li>
+                                <li><strong>Media Uploads:</strong> Attaching photos of defective infrastructure directly to ticket records.</li>
+                                <li><strong>Staff SMS Dispatch:</strong> Automated SMS alerts dispatched to on-call campus maintenance staff.</li>
+                                <li><strong>Warden Analytics:</strong> Visual resolution time graphs and hostel-by-hostel defect hotspots.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <aside class="speaker-notes">
+                <strong>Speaker Notes:</strong> "In terms of impact, this platform transforms hostel operations by making every request trackable and transparent. Looking forward, our architecture is ready for several high-value expansions. We plan to integrate WebSockets for live status notifications, allow media attachments so students can photograph damaged fixtures, and add analytical dashboards that measure caretaker resolution times across different hostels."
+            </aside>
+        </section>
+
+        <!-- Slide 16: Conclusion & Live Demo -->
+        <section class="slide" data-slide="16" data-title="Conclusion & Demo">
+            <div class="slide-content title-slide-layout">
+                <div class="title-left">
+                    <span class="eyebrow-tag">Evaluation &bull; Live Demonstration</span>
+                    <h2 class="main-title" style="font-size: 38px;">Conclusion &amp; Live Demo</h2>
+                    <p class="main-subtitle">A modern, secure, and production-ready hostel support ecosystem.</p>
+                    
+                    <div class="demo-checklist">
+                        <h4>Live Demo Walkthrough Checklist:</h4>
+                        <ol>
+                            <li>Student Sign In &bull; Session token creation</li>
+                            <li>Ticket Creation &bull; AI classification &amp; 10s toast hover-pause</li>
+                            <li>Warden Login &bull; Status update from Pending to Resolved</li>
+                            <li>Role Boundary Test &bull; Verification of 403 blocks for student role</li>
+                            <li>Official Announcement &bull; Multi-hostel broadcast &amp; master-detail view</li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="title-right" style="display:flex; flex-direction:column; justify-content:center; align-items:center;">
+                    <div class="qa-badge">
+                        <h2>Q &amp; A</h2>
+                        <p>Thank you for your time!<br>We welcome questions from the evaluation panel.</p>
+                    </div>
+                </div>
+            </div>
+            <aside class="speaker-notes">
+                <strong>Speaker Notes:</strong> "To conclude, our Hostel Management and Support Portal represents a modern, resilient, and production-ready solution to residential campus administration. We have integrated security, AI assistance, and clean user experience into a unified platform. We would now like to transition to our live demonstration where we will walk through user login, AI issue classification, warden resolution workflows, and announcement publishing. Thank you, and we welcome your questions."
+            </aside>
+        </section>
+    </main>
+
+    <!-- Slide Overview Grid Modal -->
+    <div class="grid-modal" id="gridModal">
+        <div class="grid-modal-header">
+            <h3>Slide Navigator</h3>
+            <button class="close-grid-btn" id="btnCloseGrid">&times;</button>
+        </div>
+        <div class="grid-modal-body" id="gridThumbnails"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
