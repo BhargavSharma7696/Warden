@@ -1,3 +1,7 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
 body {
     background-color: #eff4fb;
     color: #1e293b;
@@ -159,6 +163,10 @@ body {
     cursor: pointer;
 }
 
+.issueRow > * {
+    min-width: 0;
+}
+
 .issueRow:hover,
 .issueRow:focus-visible {
     background-color: #f8fafc;
@@ -169,12 +177,18 @@ body {
     font-size: 14px;
     font-weight: 600;
     color: #1e293b;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .issueMeta {
     font-size: 12px;
     color: #64748b;
     margin-top: 4px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .raisedBy {
@@ -247,6 +261,10 @@ body {
     border: 1px solid #e2e8f0;
     border-radius: 8px;
     cursor: pointer;
+    box-sizing: border-box;
+    overflow: hidden;
+    overflow-wrap: break-word;
+    word-break: break-word;
 }
 
 .issueItem:hover,
@@ -264,10 +282,24 @@ body {
     color: #64748b;
 }
 
+.issueItem .issueTitle {
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+.issueItem .issueMeta {
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
 .issueItem p {
     margin: 0;
     font-size: 13px;
     color: #475569;
+    overflow-wrap: break-word;
+    word-break: break-word;
 }
 
 .emptyState {
@@ -432,6 +464,8 @@ body {
     font-size: 14px;
     color: #475569;
     line-height: 1.5;
+    overflow-wrap: break-word;
+    word-break: break-word;
 }
 
 .submitButton {

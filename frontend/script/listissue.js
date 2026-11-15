@@ -1,4 +1,4 @@
-const DATA_URL = "../data/issues.json";
+const API = "http://127.0.0.1:8000";
 
 const state = {
     issues: [],
@@ -20,21 +20,35 @@ const pad = (id) => String(id).padStart(3, "0");
 const initials = (name) =>
     name.split(" ").map((w) => w[0]).join("").slice(0, 2).toUpperCase();
 
-const fmtDate = (iso) => iso
-    ? new Date(iso + "T00:00:00").toLocaleDateString("en-GB",
-        { day: "2-digit", month: "short", year: "numeric" })
-    : "—";
-
 const statusPill = (s) =>
     `<span class="status ${esc(s.toLowerCase())}">${esc(s)}</span>`;
 
 /* ---------- data ---------- */
 async function loadIssues() {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+        window.location.href = "auth.html";
+        return;
+    }
+
     try {
-        const res = await fetch(DATA_URL);
-        if (!res.ok) throw new Error(res.status);
+        const res = await fetch(`${API}/issues`, {
+            headers: { Authorization: `Bearer ${token}` }
+        });
+
+        if (res.status === 401) {
+            localStorage.removeItem("token");
+            window.location.href = "auth.html";
+            return;
+        }
+
+        if (!res.ok) {
+            throw new Error("Could not load issues");
+        }
+
         const data = await res.json();
-        state.issues = data.issues;
+        state.issues = Array.isArray(data) ? data : (data.issues || []);
         render();
     } catch (err) {
         container.innerHTML =
@@ -45,7 +59,7 @@ async function loadIssues() {
 
 const filtered = () => state.issues
     .filter((i) => state.filter === "all" || i.status === state.filter)
-    .sort((a, b) => b.raisedOn.localeCompare(a.raisedOn) || b.id - a.id);
+    .sort((a, b) => b.id - a.id);
 
 /* ---------- rendering ---------- */
 function renderList(items) {
@@ -60,7 +74,7 @@ function renderList(items) {
                 <span class="avatar">${esc(initials(i.studentName))}</span>
                 ${esc(i.studentName)}
             </div>
-            <span class="raisedOn">${fmtDate(i.raisedOn)}</span>
+            <span class="raisedOn">${esc(i.raisedOn || "—")}</span>
             <span>${statusPill(i.status)}</span>
             <span class="chevron">›</span>
         </div>`).join("");
@@ -85,7 +99,7 @@ function renderCards(items) {
                 <div class="raisedBy">
                     <span class="avatar">${esc(initials(i.studentName))}</span>${esc(i.studentName)}
                 </div>
-                <span>${fmtDate(i.raisedOn)}</span>
+                <span>${esc(i.raisedOn || "—")}</span>
             </div>
         </div>`).join("")}</div>`;
 }
@@ -140,9 +154,9 @@ function openModal(id) {
         detail("Raised by", esc(i.studentName)) +
         detail("Student ID", esc(i.studentId)) +
         detail("Phone No.", esc(i.phone)) +
-        detail("Raised on", fmtDate(i.raisedOn)) +
+        detail("Raised on", esc(i.raisedOn || "—")) +
         detail("Priority", esc(i.priority)) +
-        detail("Resolved on", fmtDate(i.resolvedOn)) +
+        detail("Resolved on", esc(i.resolvedOn || "—")) +
         `<div class="detailItem fullWidth"><label>Issue</label><p>${esc(i.description)}</p></div>` +
         `<div class="detailItem fullWidth"><label>Team remarks</label><p>${esc(i.remarks) || "No remarks yet."}</p></div>`;
 

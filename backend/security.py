@@ -1,12 +1,22 @@
 import os
 from datetime import datetime, timedelta, timezone
-
+from dotenv import load_dotenv
 import jwt
 from fastapi import Depends, HTTPException, status
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from pwdlib import PasswordHash
-
 from database import get_db
+from pathlib import Path
+
+
+BASE_DIR = Path(__file__).resolve().parent
+
+ENV_FILE = BASE_DIR / "services" / ".env"
+
+load_dotenv(ENV_FILE)
+load_dotenv(BASE_DIR.parent / "services" / ".env")
+load_dotenv()
+
 
 SECRET_KEY = os.getenv("SECRET_KEY", "dev-only-change-me")
 ALGORITHM = "HS256"

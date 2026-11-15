@@ -1,0 +1,4 @@
+services/.env
+.venv
+__pycache__
+hostel.db

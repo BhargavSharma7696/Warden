@@ -12,12 +12,27 @@ const detailTeam = document.getElementById("detailTeam");
 const detailBody = document.getElementById("detailBody");
 
 let announcements = [];
+const API = "http://127.0.0.1:8000";
 
-// Get the announcement data from the JSON file.
+// Get the announcement data from the backend.
 async function getAnnouncements() {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+        window.location.href = "auth.html";
+        return;
+    }
+
     try {
-        // Change this URL to the API route given by your backend.
-        const response = await fetch("../data/announcements.json");
+        const response = await fetch(`${API}/announcements`, {
+            headers: { Authorization: `Bearer ${token}` },
+        });
+
+        if (response.status === 401) {
+            localStorage.removeItem("token");
+            window.location.href = "auth.html";
+            return;
+        }
 
         if (!response.ok) {
             throw new Error("Could not load announcements");
@@ -47,7 +62,7 @@ async function getAnnouncements() {
     }
 }
 
-// Create one card for every announcement in the JSON data.
+// Create one card for every announcement in the data.
 function showAnnouncements() {
     announcementList.innerHTML = "";
 
@@ -69,13 +84,13 @@ function showAnnouncements() {
 
         card.innerHTML = `
             <div class="cardTop">
-                <span class="cardCategory">${notice.category}</span>
-                <span class="cardDate">${notice.date}</span>
+                <span class="cardCategory">${notice.category || "Notice"}</span>
+                <span class="cardDate">${notice.date || ""}</span>
             </div>
 
-            <h3>${notice.title}</h3>
+            <h3>${notice.title || "Untitled"}</h3>
 
-            <p class="cardSummary">${notice.summary}</p>
+            <p class="cardSummary">${notice.summary || ""}</p>
 
             <div class="cardBottom">
                 <span>Notice ${notice.id}</span>
@@ -111,47 +126,72 @@ function showDetails(index) {
     }
 
     // Add the selected style to the card that was clicked.
-    cards[index].classList.add("selected");
+    if (cards[index]) {
+        cards[index].classList.add("selected");
+    }
 
     detailNumber.textContent = "ANNOUNCEMENT " + notice.id;
-    detailCategory.textContent = notice.category;
-    detailTitle.textContent = notice.title;
-    detailDate.textContent = notice.date;
-    detailTeam.textContent = notice.team;
+    detailCategory.textContent = notice.category || "Notice";
+    detailTitle.textContent = notice.title || "Untitled";
+    detailDate.textContent = notice.date || "";
+    detailTeam.textContent = notice.team || "";
 
     // Add the announcement paragraphs.
     let bodyHTML = "";
 
-    if (notice.greeting) {
-        bodyHTML += "<p>" + notice.greeting + "</p>";
-    }
-
-    if (notice.description) {
-        bodyHTML += "<p>" + notice.description + "</p>";
-    }
-
-    // Show the extra information in a small table, if it exists.
-    if (notice.details) {
-        bodyHTML += '<div class="infoTable">';
-
-        for (let key in notice.details) {
-            bodyHTML += `
-                <div class="infoRow">
-                    <span>${key}</span>
-                    <strong>${notice.details[key]}</strong>
-                </div>
-            `;
+    if (notice.body) {
+        const paragraphs = notice.body.split(/\n\s*\n/);
+        if (paragraphs.length > 0) {
+            bodyHTML += "<p>" + paragraphs[0].replace(/\n/g, "<br>") + "</p>";
         }
 
-        bodyHTML += "</div>";
-    }
+        // Show details in table
+        if (notice.details && Object.keys(notice.details).length > 0) {
+            bodyHTML += '<div class="infoTable">';
+            for (let key in notice.details) {
+                bodyHTML += `
+                    <div class="infoRow">
+                        <span>${key}</span>
+                        <strong>${notice.details[key]}</strong>
+                    </div>
+                `;
+            }
+            bodyHTML += "</div>";
+        }
 
-    if (notice.extraMessage) {
-        bodyHTML += "<p>" + notice.extraMessage + "</p>";
-    }
+        for (let i = 1; i < paragraphs.length; i++) {
+            bodyHTML += "<p>" + paragraphs[i].replace(/\n/g, "<br>") + "</p>";
+        }
+    } else {
+        // Fallback for legacy individual fields
+        if (notice.greeting) {
+            bodyHTML += "<p>" + notice.greeting + "</p>";
+        }
 
-    if (notice.closing) {
-        bodyHTML += "<p>" + notice.closing + "</p>";
+        if (notice.description) {
+            bodyHTML += "<p>" + notice.description + "</p>";
+        }
+
+        if (notice.details && Object.keys(notice.details).length > 0) {
+            bodyHTML += '<div class="infoTable">';
+            for (let key in notice.details) {
+                bodyHTML += `
+                    <div class="infoRow">
+                        <span>${key}</span>
+                        <strong>${notice.details[key]}</strong>
+                    </div>
+                `;
+            }
+            bodyHTML += "</div>";
+        }
+
+        if (notice.extraMessage) {
+            bodyHTML += "<p>" + notice.extraMessage + "</p>";
+        }
+
+        if (notice.closing) {
+            bodyHTML += "<p>" + notice.closing + "</p>";
+        }
     }
 
     detailBody.innerHTML = bodyHTML;

@@ -1,3 +1,7 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
 body {
     background-color: #eff4fb;
     color: #1e293b;
@@ -8,8 +12,10 @@ body {
 
 .issueCard {
     width: 700px;
-    min-height: 750px;
-    margin: 70px auto;
+    max-width: calc(100% - 40px);
+    box-sizing: border-box;
+    min-height: auto;
+    margin: 70px auto 40px;
     padding: 30px;
     background-color: #ffffff;
     border-radius: 12px;
@@ -96,10 +102,11 @@ body {
 }
 
 .formGroup input,
-.formGroup input,
 .formGroup select,
 .formGroup textarea {
     width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
     padding: 12px;
     border: 1px solid #cbd5e1;
     border-radius: 6px;
@@ -118,6 +125,9 @@ body {
 }
 
 .formGroup textarea {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
     resize: vertical;
     min-height: 120px;
 }
@@ -161,5 +171,179 @@ body {
 
     .fullWidth {
         grid-column: span 1;
+    }
+}
+
+/* In-App Toast Notification Styles */
+.toast-container {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 420px;
+    width: calc(100% - 48px);
+    pointer-events: none;
+}
+
+.toast {
+    pointer-events: auto;
+    background-color: #ffffff;
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.08);
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    animation: slideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    border-left: 4px solid #1D4ED8;
+    box-sizing: border-box;
+}
+
+.toast.toast-success {
+    border-left-color: #10b981;
+}
+
+.toast.toast-error {
+    border-left-color: #ef4444;
+}
+
+.toast.hide {
+    animation: fadeOut 0.3s ease forwards;
+}
+
+.toast-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.toast-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #0f172a;
+    margin: 0;
+}
+
+.toast-close {
+    background: transparent;
+    border: none;
+    font-size: 20px;
+    line-height: 1;
+    color: #94a3b8;
+    cursor: pointer;
+    padding: 2px 6px;
+    border-radius: 4px;
+    transition: color 0.15s ease, background-color 0.15s ease;
+}
+
+.toast-close:hover {
+    color: #1e293b;
+    background-color: #f1f5f9;
+}
+
+.toast-body {
+    font-size: 13px;
+    color: #475569;
+    line-height: 1.5;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.toast-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: center;
+}
+
+.toast-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 8px;
+    font-size: 11px;
+    font-weight: 600;
+    border-radius: 6px;
+    letter-spacing: 0.02em;
+}
+
+.badge-ticket {
+    background-color: #f1f5f9;
+    color: #334155;
+    border: 1px solid #cbd5e1;
+}
+
+.badge-category {
+    background-color: #eff6ff;
+    color: #1d4ed8;
+    border: 1px solid #bfdbfe;
+}
+
+.badge-priority-urgent {
+    background-color: #fef2f2;
+    color: #b91c1c;
+    border: 1px solid #fecaca;
+}
+
+.badge-priority-high {
+    background-color: #fff7ed;
+    color: #c2410c;
+    border: 1px solid #fed7aa;
+}
+
+.badge-priority-medium {
+    background-color: #fefce8;
+    color: #a16207;
+    border: 1px solid #fef08a;
+}
+
+.badge-priority-low {
+    background-color: #f0fdf4;
+    color: #15803d;
+    border: 1px solid #bbf7d0;
+}
+
+.toast-summary,
+.toast-message {
+    margin: 0;
+    color: #475569;
+    font-size: 13px;
+    word-break: break-word;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-16px) scale(0.97);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-8px) scale(0.97);
+    }
+}
+
+@media (max-width: 480px) {
+    .toast-container {
+        top: 12px;
+        right: 12px;
+        left: 12px;
+        width: auto;
     }
 }
