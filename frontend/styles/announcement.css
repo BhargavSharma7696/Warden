@@ -13,6 +13,12 @@ body {
 
 /* Navigation bar - uses the same class names as the other Warden pages */
 
+.announcementsField {
+    background-color: #EDF3FF;
+    border-radius: 8px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
 
 /* Page heading */
 .announcementPage {

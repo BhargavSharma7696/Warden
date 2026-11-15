@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List of Issues</title>
+    <!-- Links -->
+    <link rel="stylesheet" href="../styles/listissue.css">
+    <link rel="stylesheet" href="../styles/common.css">
+    <script src="../script/listissue.js" defer></script>
+</head>
+<body>
+    <nav class="nav">
+        <div class="iconName">
+            <img src="../cnt/icon.png" width="40px" height="40px">
+            <div class="appNameBox">
+                <p class="appName">
+                    <a href="dashboard.html">
+                         Warden
+                    </a>
+                </p>
+                <p class="appDesc">
+                    Hostel Management
+                </p>
+            </div> 
+        </div>
+
+        <div class="navArea">
+            <div class="currIssuesField">
+                <span class="fieldText listIssueText">
+                    <a href="listissue.html">
+                        Current Issues
+                    </a>
+                </span>
+            </div>
+            <div class="announcementsField">
+                <span class="fieldText announcementText">
+                    <a href="announcement.html">
+                         Announcements
+                    </a>
+                </span>
+            </div>
+            <a href="profile.html">
+                <img src="../cnt/profile.png" widht="40px" height="40px">
+            </a> 
+        </div>
+    </nav>
+
+    <section class="listCard">
+        <section class="listHeader">
+            <div class="listHeaderText">
+                <span class="eyebrow">Hostel Support</span>
+                <h1>List of Issues</h1>
+                <p>Every concern, in one place. Follow the progress of your hostel community's issues.</p>
+            </div>
+            <a href="raiseissue.html" class="raiseButton">Raise an issue <span>+</span></a>
+        </section>
+
+        <section class="toolbar">
+            <div class="filterTabs" id="filterTabs">
+                <button class="tab active" data-filter="all">All issues · <span id="countAll">0</span></button>
+                <button class="tab" data-filter="Pending">Pending · <span id="countPending">0</span></button>
+                <button class="tab" data-filter="Resolved">Resolved · <span id="countResolved">0</span></button>
+            </div>
+            <div class="viewToggle" id="viewToggle">
+                <button class="viewBtn" data-view="cards">Cards</button>
+                <button class="viewBtn active" data-view="list">List</button>
+            </div>
+        </section>
+
+        <section class="issuePanel">
+            <div id="issueContainer"></div>
+            <div class="panelFooter">
+                <span id="showingText">Showing 0 issues</span>
+                <div class="pagination" id="pagination"></div>
+            </div>
+        </section>
+
+        <p class="legend">Pending: awaiting attention or work in progress. Resolved: the reported work is complete.</p>
+    </section>
+
+    <footer class="pageFooter">
+        <span>Warden · Hostel Management</span>
+        <span>Concept portal · Illustrative content, not an official institute service</span>
+    </footer>
+
+    <!-- Issue details popup -->
+    <div class="modalOverlay" id="modalOverlay" hidden>
+        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+            <button class="modalClose" id="modalClose" aria-label="Close">&times;</button>
+            <div class="modalHead">
+                <div class="headingIcon" id="modalIcon"></div>
+                <div class="headingText">
+                    <h1 id="modalTitle"></h1>
+                    <p id="modalSub"></p>
+                </div>
+            </div>
+            <div class="detailGrid" id="modalBody"></div>
+            <button class="submitButton" id="modalDone">Close</button>
+        </div>
+    </div>
+</body>
+</html>
