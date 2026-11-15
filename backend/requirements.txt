@@ -3,3 +3,6 @@ uvicorn[standard]
 pydantic
 PyJWT
 pwdlib[argon2]
+python-dotenv
+google-generativeai
+python-multipart
