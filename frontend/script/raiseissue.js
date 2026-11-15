@@ -195,7 +195,17 @@ function showToast(options = {}) {
 
     let timer = setTimeout(() => {
         dismissToast(toast);
-    }, 5000);
+    }, 10000);
+
+    toast.addEventListener("mouseenter", () => {
+        clearTimeout(timer);
+    });
+
+    toast.addEventListener("mouseleave", () => {
+        timer = setTimeout(() => {
+            dismissToast(toast);
+        }, 5000);
+    });
 
     closeBtn.addEventListener("click", () => {
         clearTimeout(timer);
