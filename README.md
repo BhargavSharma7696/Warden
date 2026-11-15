@@ -59,23 +59,29 @@ A lightweight **hostel‑management portal** built for the CSP‑203 computer‑
 
 ---
 
+
 ## Architecture Diagram
+
 ```mermaid
 flowchart TD
     subgraph Frontend
-        A[HTML / CSS / JS] --> B[Fetch API (JSON)]
+        A["HTML / CSS / JS"] --> B["Fetch API - JSON"]
     end
+
     subgraph Backend
-        B --> C[FastAPI Router]
-        C --> D[Security (JWT, role checks)]
-        C --> E[Database Layer]
+        B --> C["FastAPI Router"]
+        C --> D["Security - JWT and role checks"]
+        C --> E["Database Layer"]
         D --> E
-        C --> F[LLM Service (services/llm.py)]
+        C --> F["LLM Service - services/llm.py"]
     end
-    E --> G[SQLite DB (users, issues, announcements)]
+
+    E --> G["SQLite DB - users, issues, announcements"]
+
     style Frontend fill:#f9f,stroke:#333,stroke-width:2px
     style Backend fill:#bbf,stroke:#333,stroke-width:2px
 ```
+
 
 ---
 
