@@ -12,7 +12,7 @@ const detailTeam = document.getElementById("detailTeam");
 const detailBody = document.getElementById("detailBody");
 
 let announcements = [];
-const API = "http://127.0.0.1:8000";
+const API = "https://warden-vspr.onrender.com";
 
 // Get the announcement data from the backend.
 async function getAnnouncements() {

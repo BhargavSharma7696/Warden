@@ -1,0 +1,13 @@
+{
+  "cleanUrls": true,
+  "redirects": [
+    { "source": "/", "destination": "/pages/auth.html", "permanent": true },
+    { "source": "/frontend", "destination": "/pages/auth.html", "permanent": true }
+  ],
+  "rewrites": [
+    { "source": "/pages/:path*", "destination": "/frontend/pages/:path*" },
+    { "source": "/styles/:path*", "destination": "/frontend/styles/:path*" },
+    { "source": "/script/:path*", "destination": "/frontend/script/:path*" },
+    { "source": "/cnt/:path*", "destination": "/frontend/cnt/:path*" }
+  ]
+}

@@ -1,4 +1,4 @@
-const API = "http://127.0.0.1:8000";
+const API = "https://warden-vspr.onrender.com";
 
 // Immediate auth check on script load
 (function checkAuth() {
